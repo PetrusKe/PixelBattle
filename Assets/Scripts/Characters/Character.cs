@@ -12,13 +12,13 @@ namespace GameCharacters
 {
     public class Character : MonoBehaviour
     {
-        Animator anim;
-        Rigidbody playerRigidbody;
+        protected Animator anim;
+        protected Rigidbody playerRigidbody;
 
         // Character components
-        CharacterAttrs characterAttrs;
-        CharacterHP characterHP;
-        CharacterState characterState;
+        protected CharacterAttrs characterAttrs;
+        protected CharacterHP characterHP;
+        protected CharacterState characterState;
 
         public string characterName;
 
@@ -58,23 +58,31 @@ namespace GameCharacters
                 playerRigidbody.MoveRotation(Quaternion.LookRotation(-rotation));
         }
 
-        public void LightAttack()
+        public virtual void LightAttack()
         {
-            
+            //if (anim.GetCurrentAnimatorStateInfo(0).IsName("Run_Hand"))
+            //    ChangeAnim("walk", false);
         }
 
-        public void HardAttack()
+        public virtual void HardAttack() { }
+
+        public void TakeDamage(float damage)
         {
-
+            if (characterHP.Change(-damage) == 0)
+            {
+                // player dead.
+            } else
+            {
+                // player hurt
+            }
         }
-
 
         public void Death()
         {
-            
+
         }
 
-        public void ChangeHP(float amount=0)
+        public void ChangeHP(float amount = 0)
         {
             characterHP.Change(amount);
         }
@@ -96,6 +104,18 @@ namespace GameCharacters
         public void ChangeAnim(string paramName)
         {
             anim.SetTrigger(paramName);
+        }
+
+
+        public bool AttackIsStart()
+        {
+            // link to anim event
+            return true;
+        }
+
+        public bool AttackIsEnd()
+        {
+            return false;
         }
     }
 

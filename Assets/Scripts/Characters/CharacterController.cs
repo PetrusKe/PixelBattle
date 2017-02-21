@@ -32,7 +32,6 @@ namespace GameCharacters
         private void PositionAction()
         {
             float h = inputController.GetAxis("Horizontal_" + controllerId);
-            Debug.Log("Horizontal_" + controllerId);
             float v = inputController.GetAxis("Vertical_" + controllerId);
             if (h != 0 || v != 0)
             {
@@ -58,7 +57,7 @@ namespace GameCharacters
             {
                 // 设置 动画连击
                 character.LightAttack();
-                character.ChangeAnim("attack1A");
+               
             }
         }
     }
