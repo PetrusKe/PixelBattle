@@ -52,8 +52,26 @@ namespace GameCharacters
         }
     }
 
-    public enum CharacterState
+    public class CharacterState
     {
-        
+        private Animator anim;
+
+        public CharacterState(Animator anim)
+        {
+            this.anim = anim;
+        }
+
+        public bool IsWalking()
+        {
+            return anim.GetBool("walking");
+        }
+
+        public bool IsAttacking()
+        {
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("LightAttack"))
+                return true;
+            else
+                return false;
+        }
     }
 }

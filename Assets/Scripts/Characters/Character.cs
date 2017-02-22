@@ -19,10 +19,11 @@ namespace GameCharacters
         protected CharacterAttrs characterAttrs;
         protected CharacterHP characterHP;
         protected CharacterSkills characterSkills;
+        protected CharacterState characterState;
 
         protected Transform[] characterWeaponsCenter;
 
-        protected CharacterState characterState;
+        
 
         public string characterName;
 
@@ -45,13 +46,15 @@ namespace GameCharacters
             characterHP = new CharacterHP(characterAttrs.maxHP, HPSlider, fillImage);
             characterHP.OnEnable();
 
+            characterState = new CharacterState(anim);
+
             // get weapon Collider
             GetWeaponsCenter();
         }
 
         protected virtual void GetWeaponsCenter() { }
 
-        public void Walk(float h, float v)
+        public void Move(float h, float v)
         {
             if (characterAttrs.walkSpeed > 0f)
             {
@@ -70,7 +73,8 @@ namespace GameCharacters
 
         public virtual void LightAttack()
         {
-            
+            if (characterState.IsAttacking())
+                return;
         }
 
         public void TakeDamage(float damage)
@@ -112,7 +116,6 @@ namespace GameCharacters
         {
             anim.SetTrigger(paramName);
         }
-
 
         public void AttackIsStart()
         {
