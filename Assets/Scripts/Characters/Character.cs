@@ -20,9 +20,7 @@ namespace GameCharacters
         protected CharacterHP characterHP;
         protected CharacterSkills characterSkills;
 
-        protected Transform[] characterWeaponsCenter;
-
-        protected CharacterState characterState;
+        protected Transform[] characterWeaponsCenter;   
 
         public string characterName;
 
@@ -51,7 +49,7 @@ namespace GameCharacters
 
         protected virtual void GetWeaponsCenter() { }
 
-        public void Walk(float h, float v)
+        public void Move(float h, float v)
         {
             if (characterAttrs.walkSpeed > 0f)
             {
@@ -70,7 +68,7 @@ namespace GameCharacters
 
         public virtual void LightAttack()
         {
-            
+
         }
 
         public void TakeDamage(float damage)
@@ -89,9 +87,9 @@ namespace GameCharacters
 
         }
 
-        public void ChangeHP(float amount = 0)
+        public float ChangeHP(float amount = 0)
         {
-            characterHP.Change(amount);
+            return characterHP.Change(amount);
         }
 
         public void ChangeAnim(string paramName, bool value)
@@ -113,16 +111,6 @@ namespace GameCharacters
             anim.SetTrigger(paramName);
         }
 
-
-        public void AttackIsStart()
-        {
-            
-        }
-
-        public void AttackIsEnd()
-        {
-
-        }
     }
 
 }

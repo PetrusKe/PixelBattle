@@ -5,8 +5,6 @@ using UnityEngine;
 namespace GameCharacters
 {
 
-
-
     public class CharacterAttrs
     {
         public float walkSpeed;
@@ -36,6 +34,5 @@ namespace GameCharacters
             maxHP = 120.0f;
         }
     }
-
 
 }

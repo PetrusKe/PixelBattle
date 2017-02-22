@@ -9,15 +9,26 @@ namespace GameCharacters
         public override void LightAttack()
         {
             base.LightAttack();
+            ChangeAnim("lightAttack");
+            LightAttackAttrs skillAttrs = characterSkills.lightAttackAttrs;
 
-            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1A_Hand"))
-            {
-                ChangeAnim("attack1B");
-            }
-            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1B_Hand"))
-                ChangeAnim("attack1A");
-
-            ChangeAnim("attack1");
+            //if (characterWeaponsCenter.Length == 0)
+            //    return;
+            //foreach (Transform hit in characterWeaponsCenter)
+            //{
+            //    Collider[] colliders = Physics.OverlapSphere(hit.position, 0.3f, 1 << LayerMask.NameToLayer("Character"));
+            //    foreach (Collider collider in colliders)
+            //    {
+            //        if (collider.gameObject.name == this.gameObject.name)
+            //            continue;
+            //        Character other = collider.gameObject.GetComponent<Character>();
+            //        other.TakeDamage(skillAttrs.power);
+            //    }
+            //}
+        }
+        protected override void GetWeaponsCenter()
+        {
+            base.GetWeaponsCenter();
         }
 
     }

@@ -52,8 +52,4 @@ namespace GameCharacters
         }
     }
 
-    public enum CharacterState
-    {
-        
-    }
 }

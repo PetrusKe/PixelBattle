@@ -26,7 +26,6 @@ namespace GameCharacters
         {
             AttackAction();
             PositionAction();
-
             AttrsUpdateAction();
         }
 
@@ -36,13 +35,13 @@ namespace GameCharacters
             float v = inputController.GetAxis("Vertical_" + controllerId);
             if (h != 0 || v != 0)
             {
-                character.Walk(h, v);
+                character.Move(h, v);
                 character.Turn(h, v);
-                character.ChangeAnim("walk", true);
+                character.ChangeAnim("run", true);
             }
             else
             {
-                character.ChangeAnim("walk", false);
+                character.ChangeAnim("run", false);
             }
         }
 
