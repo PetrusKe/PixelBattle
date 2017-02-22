@@ -26,6 +26,7 @@ namespace GameCharacters
         {
             AttackAction();
             PositionAction();
+
             AttrsUpdateAction();
         }
 
@@ -47,17 +48,14 @@ namespace GameCharacters
 
         private void AttrsUpdateAction()
         {
-            float amount = 0f;
-            character.ChangeHP(amount);
+            
         }
 
         public void AttackAction()
         {
             if(inputController.GetKeyDown("lightAttack_"+controllerId))
             {
-                // 设置 动画连击
                 character.LightAttack();
-               
             }
         }
     }

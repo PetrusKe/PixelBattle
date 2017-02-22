@@ -290,8 +290,8 @@ GameObject:
   - component: {fileID: 54361864732114812}
   - component: {fileID: 136944278701671592}
   - component: {fileID: 95262902679963538}
-  - component: {fileID: 114721971533957858}
   - component: {fileID: 114093510758679914}
+  - component: {fileID: 114155351158373170}
   m_Layer: 0
   m_Name: MagicGirl
   m_TagString: Player
@@ -738,7 +738,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4323233878844894}
-  - component: {fileID: 114150943633733590}
   m_Layer: 0
   m_Name: Hand
   m_TagString: Untagged
@@ -2018,8 +2017,8 @@ Rigidbody:
   m_GameObject: {fileID: 1361067577159196}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
+  m_Drag: 1
+  m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -2053,17 +2052,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 854803a6883f5eb469df64d7fb55f9a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114150943633733590
+--- !u!114 &114155351158373170
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1764120279741502}
+  m_GameObject: {fileID: 1361067577159196}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 1c6870401119b0844aca1424a497801d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterName: MagicGirl
 --- !u!114 &114253743658071570
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2161,18 +2161,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114721971533957858
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1361067577159196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4e0df47bf9bddc44a6f42e22d8afd95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterName: MagicGirl
 --- !u!114 &114781297214157854
 MonoBehaviour:
   m_ObjectHideFlags: 1

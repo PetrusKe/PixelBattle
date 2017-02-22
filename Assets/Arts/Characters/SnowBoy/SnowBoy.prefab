@@ -129,7 +129,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4628227537872392}
-  - component: {fileID: 114380204026249202}
   m_Layer: 0
   m_Name: Wood ShortAxe
   m_TagString: Untagged
@@ -209,7 +208,7 @@ GameObject:
   - component: {fileID: 136449909013193354}
   - component: {fileID: 95273523883947966}
   - component: {fileID: 114915603321618496}
-  - component: {fileID: 114186464729893254}
+  - component: {fileID: 114872086484529208}
   m_Layer: 0
   m_Name: SnowBoy
   m_TagString: Player
@@ -356,7 +355,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4028667901616812}
-  - component: {fileID: 114928789054068922}
   m_Layer: 0
   m_Name: Wood ShortAxe
   m_TagString: Untagged
@@ -379,6 +377,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1468118957728182
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4000823035144658}
+  - component: {fileID: 65506411450301642}
+  m_Layer: 0
+  m_Name: AttackCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1478657104733294
 GameObject:
   m_ObjectHideFlags: 1
@@ -389,6 +403,22 @@ GameObject:
   - component: {fileID: 4583046535096100}
   m_Layer: 0
   m_Name: _holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1496943648454760
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4133285410665920}
+  - component: {fileID: 65896282765694762}
+  m_Layer: 0
+  m_Name: AttackCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -952,6 +982,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4000823035144658
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1468118957728182}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.614, z: -0.201}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4305177775438336}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4010164763211642
 Transform:
   m_ObjectHideFlags: 1
@@ -1068,6 +1111,19 @@ Transform:
   m_Father: {fileID: 4940756598033064}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4133285410665920
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1496943648454760}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.619, z: -0.208}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4972519046087742}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4164986737761842
 Transform:
   m_ObjectHideFlags: 1
@@ -1173,7 +1229,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4000823035144658}
   m_Father: {fileID: 4028667901616812}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1663,7 +1720,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4133285410665920}
   m_Father: {fileID: 4628227537872392}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2186,13 +2244,37 @@ Rigidbody:
   m_GameObject: {fileID: 1230481608051396}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
+  m_Drag: 1
+  m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!65 &65506411450301642
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1468118957728182}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.5, z: 0.4}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65896282765694762
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1496943648454760}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.5, z: 0.4}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95273523883947966
 Animator:
   serializedVersion: 3
@@ -2202,7 +2284,7 @@ Animator:
   m_GameObject: {fileID: 1230481608051396}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8bec363b6c8723e4a9c15a033d823f2f, type: 2}
+  m_Controller: {fileID: 9100000, guid: ee98e8dd38d5e1e41a048bc601491324, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2243,18 +2325,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useRelativeRotation: 1
---- !u!114 &114186464729893254
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1230481608051396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4e0df47bf9bddc44a6f42e22d8afd95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterName: SnowBoy
 --- !u!114 &114193698066179896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2310,17 +2380,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useRelativeRotation: 1
---- !u!114 &114380204026249202
+--- !u!114 &114872086484529208
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1102782455157128}
+  m_GameObject: {fileID: 1230481608051396}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: b7b5f765cd3d45b49a53e2a72ac90ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterName: SnowBoy
 --- !u!114 &114890454387382024
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2378,17 +2449,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 854803a6883f5eb469df64d7fb55f9a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114928789054068922
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1416244625542134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114967555694288018

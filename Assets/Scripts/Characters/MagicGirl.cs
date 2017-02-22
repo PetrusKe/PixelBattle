@@ -10,21 +10,16 @@ namespace GameCharacters
         {
             base.LightAttack();
 
-
-            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1A_Hand") && AttackIsStart())
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1A_Hand"))
             {
                 ChangeAnim("attack1B");
             }
-            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1B_Hand") && AttackIsStart())
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1B_Hand"))
                 ChangeAnim("attack1A");
 
             ChangeAnim("attack1");
         }
 
-        public override void HardAttack()
-        {
-            base.HardAttack();
-        }
     }
 }
 

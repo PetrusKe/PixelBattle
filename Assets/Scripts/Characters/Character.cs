@@ -18,6 +18,10 @@ namespace GameCharacters
         // Character components
         protected CharacterAttrs characterAttrs;
         protected CharacterHP characterHP;
+        protected CharacterSkills characterSkills;
+
+        protected Transform[] characterWeaponsCenter;
+
         protected CharacterState characterState;
 
         public string characterName;
@@ -28,10 +32,12 @@ namespace GameCharacters
             playerRigidbody = GetComponent<Rigidbody>();
 
             // Init character components
-            string className = "GameCharacters." + characterName + "Attrs";
-            Console.Write(className);
             Assembly assembly = Assembly.GetExecutingAssembly();
+            string className = "GameCharacters." + characterName + "Attrs";
             characterAttrs = (CharacterAttrs)assembly.CreateInstance(className);
+
+            className = "GameCharacters." + characterName + "Skills";
+            characterSkills = (CharacterSkills)assembly.CreateInstance(className);
 
             // set HP. need a check
             Slider HPSlider = transform.Find("Canvas/HealthSlider").GetComponent<Slider>();
@@ -39,7 +45,11 @@ namespace GameCharacters
             characterHP = new CharacterHP(characterAttrs.maxHP, HPSlider, fillImage);
             characterHP.OnEnable();
 
+            // get weapon Collider
+            GetWeaponsCenter();
         }
+
+        protected virtual void GetWeaponsCenter() { }
 
         public void Walk(float h, float v)
         {
@@ -60,11 +70,8 @@ namespace GameCharacters
 
         public virtual void LightAttack()
         {
-            //if (anim.GetCurrentAnimatorStateInfo(0).IsName("Run_Hand"))
-            //    ChangeAnim("walk", false);
+            
         }
-
-        public virtual void HardAttack() { }
 
         public void TakeDamage(float damage)
         {
@@ -107,15 +114,14 @@ namespace GameCharacters
         }
 
 
-        public bool AttackIsStart()
+        public void AttackIsStart()
         {
-            // link to anim event
-            return true;
+            
         }
 
-        public bool AttackIsEnd()
+        public void AttackIsEnd()
         {
-            return false;
+
         }
     }
 

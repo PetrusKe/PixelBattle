@@ -28,6 +28,7 @@ namespace GameCharacters
         public void OnEnable()
         {
             currentHP = maxHP;
+            SetHealthUI();
         }
 
         public float Change(float amount)
