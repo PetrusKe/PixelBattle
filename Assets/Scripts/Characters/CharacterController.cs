@@ -52,8 +52,6 @@ namespace GameCharacters
 
         public void AttackAction()
         {
-            if (character.state.isAttacking())
-                return;
             if(inputController.GetKeyDown("lightAttack_"+controllerId))
             {
                 character.LightAttack();

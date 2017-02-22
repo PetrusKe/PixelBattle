@@ -61,7 +61,6 @@ namespace GameUtils
         private Vector3 FindAveragePos()
         {
             Vector3 avgPos = new Vector3();
-            int numTargets = 0;
 
             for (int i=0; i < targetsPos.Length; i++)
             {
@@ -69,11 +68,10 @@ namespace GameUtils
                     // if target not active, not handle it
                     continue;
                 avgPos += targetsPos[i].position;
-                numTargets++;
             }
 
-            if(numTargets > 0)
-                avgPos /= numTargets;
+            if(targetsPos.Length > 0)
+                avgPos /= targetsPos.Length;
 
             avgPos.y = transform.position.y;
             return avgPos;
