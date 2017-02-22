@@ -14,6 +14,7 @@ namespace GameCharacters
 
             if (characterWeaponsCenter.Length == 0)
                 return;
+
             foreach (Transform hit in characterWeaponsCenter)
             {
                 Collider[] colliders = Physics.OverlapSphere(hit.position, 0.3f, 1 << LayerMask.NameToLayer("Character"));

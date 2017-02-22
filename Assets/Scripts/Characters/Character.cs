@@ -19,11 +19,8 @@ namespace GameCharacters
         protected CharacterAttrs characterAttrs;
         protected CharacterHP characterHP;
         protected CharacterSkills characterSkills;
-        protected CharacterState characterState;
 
-        protected Transform[] characterWeaponsCenter;
-
-        
+        protected Transform[] characterWeaponsCenter;   
 
         public string characterName;
 
@@ -45,8 +42,6 @@ namespace GameCharacters
             Image fillImage = transform.Find("Canvas/HealthSlider/Fill Area/Fill").GetComponent<Image>();
             characterHP = new CharacterHP(characterAttrs.maxHP, HPSlider, fillImage);
             characterHP.OnEnable();
-
-            characterState = new CharacterState(anim);
 
             // get weapon Collider
             GetWeaponsCenter();
@@ -73,8 +68,7 @@ namespace GameCharacters
 
         public virtual void LightAttack()
         {
-            if (characterState.IsAttacking())
-                return;
+
         }
 
         public void TakeDamage(float damage)
@@ -93,9 +87,9 @@ namespace GameCharacters
 
         }
 
-        public void ChangeHP(float amount = 0)
+        public float ChangeHP(float amount = 0)
         {
-            characterHP.Change(amount);
+            return characterHP.Change(amount);
         }
 
         public void ChangeAnim(string paramName, bool value)
@@ -117,15 +111,6 @@ namespace GameCharacters
             anim.SetTrigger(paramName);
         }
 
-        public void AttackIsStart()
-        {
-            
-        }
-
-        public void AttackIsEnd()
-        {
-
-        }
     }
 
 }

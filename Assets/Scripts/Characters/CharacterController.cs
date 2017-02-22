@@ -53,7 +53,7 @@ namespace GameCharacters
         public void AttackAction()
         {
             if(inputController.GetKeyDown("lightAttack_"+controllerId))
-            {   
+            {
                 character.LightAttack();
             }
         }

@@ -29,7 +29,6 @@ namespace GameCharacters
         protected override void GetWeaponsCenter()
         {
             base.GetWeaponsCenter();
-
         }
 
     }
