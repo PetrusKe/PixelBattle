@@ -774,7 +774,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: LigthtAttack
+  m_Name: LightAttack
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -805,16 +805,16 @@ AnimatorStateMachine:
     m_Position: {x: 252, y: -36, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102739432591808682}
-    m_Position: {x: 576, y: 48, z: 0}
+    m_Position: {x: 552, y: 48, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102355622281126834}
-    m_Position: {x: 576, y: -12, z: 0}
+    m_Position: {x: 552, y: -12, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102632291006492956}
     m_Position: {x: 252, y: -132, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102956998901970410}
-    m_Position: {x: 576, y: -84, z: 0}
+    m_Position: {x: 552, y: -72, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102104056880399468}
     m_Position: {x: 552, y: -132, z: 0}

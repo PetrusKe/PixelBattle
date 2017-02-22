@@ -52,4 +52,27 @@ namespace GameCharacters
         }
     }
 
+    public class CharacterState
+    {
+
+        Animator anim;
+
+        public CharacterState(Animator anim)
+        {
+            this.anim = anim;
+        }
+
+        public bool isMove()
+        {
+            return anim.GetBool("run");
+        }
+
+        public bool isAttacking()
+        {
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("LightAttack"))
+                return true;
+
+            return false;
+        }
+    }
 }

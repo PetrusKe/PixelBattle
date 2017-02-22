@@ -19,7 +19,7 @@ namespace GameCharacters
         protected CharacterAttrs characterAttrs;
         protected CharacterHP characterHP;
         protected CharacterSkills characterSkills;
-
+        public CharacterState state;
         protected Transform[] characterWeaponsCenter;   
 
         public string characterName;
@@ -42,6 +42,8 @@ namespace GameCharacters
             Image fillImage = transform.Find("Canvas/HealthSlider/Fill Area/Fill").GetComponent<Image>();
             characterHP = new CharacterHP(characterAttrs.maxHP, HPSlider, fillImage);
             characterHP.OnEnable();
+
+            state = new CharacterState(anim);
 
             // get weapon Collider
             GetWeaponsCenter();
