@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class TimeText : MonoBehaviour {
 
 	private Text timeText;
+	private int secs_60n;
 	private int minutes;
 	private int seconds;
 
@@ -21,7 +22,9 @@ public class TimeText : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		seconds = (int)Time.fixedTime;
+
+		secs_60n = (int)Time.fixedTime;
+		seconds = secs_60n % 60;
 		minutes = ((int)Time.fixedTime / 60);
 
 		minutesFormed = minutes < 10 ? "0" + minutes.ToString () : minutes.ToString ();
