@@ -14,7 +14,7 @@ public class switchSC1 : MonoBehaviour {
 
 	void switchsc()
 	{
-		UnityEngine.SceneManagement.SceneManager.LoadScene ("Menu");
+		UnityEngine.SceneManagement.SceneManager.LoadScene ("MainMenu");
 	}
 
 }
