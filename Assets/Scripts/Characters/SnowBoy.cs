@@ -9,7 +9,8 @@ namespace GameCharacters
         public override void LightAttack()
         {
             base.LightAttack();
-            ChangeAnim("lightAttack");
+            // could add combo judge here
+            ChangeAnim(anim.lightAttack);
             LightAttackAttrs skillAttrs = characterSkills.lightAttackAttrs;
 
             if (characterWeaponsCenter.Length == 0)

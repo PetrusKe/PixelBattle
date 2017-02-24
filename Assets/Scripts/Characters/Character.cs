@@ -12,21 +12,22 @@ namespace GameCharacters
 {
     public class Character : MonoBehaviour
     {
-        protected Animator anim;
+        protected Animator animator;
         protected Rigidbody playerRigidbody;
 
         // Character components
         protected CharacterAttrs characterAttrs;
         protected CharacterHP characterHP;
         protected CharacterSkills characterSkills;
-        public CharacterState state;
-        protected Transform[] characterWeaponsCenter;   
+        protected CharacterState state;
+        protected CharacterAnimation anim;
+        protected Transform[] characterWeaponsCenter;
 
         public string characterName;
 
         public void Start()
         {
-            anim = GetComponent<Animator>();
+            animator = GetComponent<Animator>();
             playerRigidbody = GetComponent<Rigidbody>();
 
             // Init character components
@@ -43,7 +44,8 @@ namespace GameCharacters
             characterHP = new CharacterHP(characterAttrs.maxHP, HPSlider, fillImage);
             characterHP.OnEnable();
 
-            state = new CharacterState(anim);
+            state = new CharacterState();
+            anim = new CharacterAnimation();
 
             // get weapon Collider
             GetWeaponsCenter();
@@ -53,12 +55,16 @@ namespace GameCharacters
 
         public void Move(float h, float v)
         {
-            if (characterAttrs.walkSpeed > 0f)
+            if ((h != 0 || v != 0) && characterAttrs.walkSpeed > 0f)
             {
+                ChangeAnim(anim.run, true);
                 Vector3 movement = new Vector3(h, 0f, v);
                 movement = movement.normalized * characterAttrs.walkSpeed * Time.deltaTime;
                 playerRigidbody.MovePosition(transform.position + movement);
+                Turn(h, v);
+                return;
             }
+            ChangeAnim(anim.run, false);
         }
 
         public void Turn(float h, float v)
@@ -70,6 +76,13 @@ namespace GameCharacters
 
         public virtual void LightAttack()
         {
+            if (!state.IsGround)
+                return;
+            if (state.IsLightAttack < 0 || state.IsLightAttack >= 3)  // feture will support 3 combo
+                state.IsLightAttack = 0;
+
+            state.IsLightAttack++;
+            Console.Write(state.IsLightAttack);
 
         }
 
@@ -78,7 +91,8 @@ namespace GameCharacters
             if (characterHP.Change(-damage) == 0)
             {
                 // player dead.
-            } else
+            }
+            else
             {
                 // player hurt
             }
@@ -96,21 +110,21 @@ namespace GameCharacters
 
         public void ChangeAnim(string paramName, bool value)
         {
-            anim.SetBool(paramName, value);
+            animator.SetBool(paramName, value);
         }
 
         public void ChangeAnim(string paramName, int value)
         {
-            anim.SetInteger(paramName, value);
+            animator.SetInteger(paramName, value);
         }
 
         public void ChangeAnim(string paramName, float value)
         {
-            anim.SetFloat(paramName, value);
+            animator.SetFloat(paramName, value);
         }
         public void ChangeAnim(string paramName)
         {
-            anim.SetTrigger(paramName);
+            animator.SetTrigger(paramName);
         }
 
     }

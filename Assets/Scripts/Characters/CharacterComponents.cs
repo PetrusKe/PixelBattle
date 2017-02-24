@@ -15,7 +15,7 @@ namespace GameCharacters
         private Slider HPSlider;
         private Image fillImage;
 
-        private Color fullHPColor = new Color(0f, 1f, 0f, 0.6f);
+        private Color fullHPColor = new Color(0f, 1f, 0f, 0.8f);
         private Color zeroHPColor = new Color(1f, 0f, 0f, 0.6f);
 
         public CharacterHP(float maxHP, Slider HPSlider, Image fillImage)
@@ -54,25 +54,82 @@ namespace GameCharacters
 
     public class CharacterState
     {
+        private bool isRun;
+        private int isLightAttack;
+        private bool isGround;
 
-        Animator anim;
-
-        public CharacterState(Animator anim)
+        public CharacterState()
         {
-            this.anim = anim;
+            isRun = false;
+            isLightAttack = 0;
+            isGround = true;
         }
 
-        public bool isMove()
+
+
+        public bool IsRun
         {
-            return anim.GetBool("run");
+            get
+            {
+                return isRun;
+            }
+
+            set
+            {
+                if (isRun == value)
+                    return;
+                isRun = value;
+            }
         }
 
-        public bool isAttacking()
+        public int IsLightAttack
         {
-            if (anim.GetCurrentAnimatorStateInfo(0).IsName("LightAttack"))
-                return true;
+            get
+            {
+                return isLightAttack;
+            }
 
-            return false;
+            set
+            {
+                if (value < 0)
+                    return;
+                isLightAttack = value;
+            }
+        }
+
+        public bool IsGround
+        {
+            get
+            {
+                return isGround;
+            }
+
+            set
+            {
+                if (isGround == value)
+                    return;
+                isGround = value;
+            }
+        }
+    }
+
+    public class CharacterAnimation
+    {
+        public int idleAnim { get; private set; }
+        public int runAnim { get; private set; }
+        public int lightAttackAnim { get; private set; }
+
+        public string lightAttack { get; private set; }
+        public string run { get; private set; }
+
+        public CharacterAnimation()
+        {
+            idleAnim = Animator.StringToHash("Base Layer.Idle");
+            runAnim = Animator.StringToHash("Base Layer.Run");
+            lightAttackAnim = Animator.StringToHash("Base Layer.LightAttack");
+
+            lightAttack = "lightAttack";
+            run = "run";
         }
     }
 }

@@ -48,7 +48,7 @@ namespace GameCharacters
         public SnowBoySkills()
         {
             lightAttackAttrs.name = "LightAttack";
-            lightAttackAttrs.power = 7.0f;
+            lightAttackAttrs.power = 2.0f;
             lightAttackAttrs.isAct = false;
             
         }
