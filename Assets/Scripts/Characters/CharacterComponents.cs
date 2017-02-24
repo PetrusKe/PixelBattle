@@ -15,7 +15,7 @@ namespace GameCharacters
         private Slider HPSlider;
         private Image fillImage;
 
-        private Color fullHPColor = new Color(0f, 1f, 0f, 0.6f);
+        private Color fullHPColor = new Color(0f, 1f, 0f, 0.8f);
         private Color zeroHPColor = new Color(1f, 0f, 0f, 0.6f);
 
         public CharacterHP(float maxHP, Slider HPSlider, Image fillImage)
