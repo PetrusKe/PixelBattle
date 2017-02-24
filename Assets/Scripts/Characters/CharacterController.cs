@@ -24,31 +24,19 @@ namespace GameCharacters
         // Update is called once per frame
         void FixedUpdate()
         {
-            AttackAction();
             PositionAction();
-            AttrsUpdateAction();
+            AttackAction();
         }
+
 
         private void PositionAction()
         {
             float h = inputController.GetAxis("Horizontal_" + controllerId);
             float v = inputController.GetAxis("Vertical_" + controllerId);
-            if (h != 0 || v != 0)
-            {
-                character.Move(h, v);
-                character.Turn(h, v);
-                character.ChangeAnim("run", true);
-            }
-            else
-            {
-                character.ChangeAnim("run", false);
-            }
+            character.Move(h, v);
         }
 
-        private void AttrsUpdateAction()
-        {
-            
-        }
+
 
         public void AttackAction()
         {
@@ -57,5 +45,6 @@ namespace GameCharacters
                 character.LightAttack();
             }
         }
+
     }
 }

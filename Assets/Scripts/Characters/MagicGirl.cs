@@ -9,7 +9,7 @@ namespace GameCharacters
         public override void LightAttack()
         {
             base.LightAttack();
-            ChangeAnim("lightAttack");
+            ChangeAnim(anim.lightAttack);
             LightAttackAttrs skillAttrs = characterSkills.lightAttackAttrs;
 
             //if (characterWeaponsCenter.Length == 0)
