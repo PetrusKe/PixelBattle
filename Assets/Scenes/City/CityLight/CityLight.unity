@@ -243,6 +243,23 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 576583310}
+--- !u!1 &679702346 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1230481608051396, guid: 7dfb2d1bb3a6b84499ffe245a5a44a54,
+    type: 2}
+  m_PrefabInternal: {fileID: 1418720406}
+--- !u!114 &679702353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 679702346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84a565f9d10e82049be1cd0c2e4c011a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightAttackObj: {fileID: 0}
 --- !u!1001 &1004676443
 Prefab:
   m_ObjectHideFlags: 0
@@ -633,11 +650,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 20134037577177386, guid: 660f38e3d821bc047a21740b79b4de2e,
-        type: 2}
-      propertyPath: orthographic
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 114962443942756276, guid: 660f38e3d821bc047a21740b79b4de2e,
         type: 2}
       propertyPath: Volume
@@ -774,17 +786,12 @@ Prefab:
     - target: {fileID: 224038481299526946, guid: ef17e88889292504faffd199c433cb27,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224038481299526946, guid: ef17e88889292504faffd199c433cb27,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114041633716522692, guid: ef17e88889292504faffd199c433cb27,
-        type: 2}
-      propertyPath: m_Color.a
-      value: 0.547
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef17e88889292504faffd199c433cb27, type: 2}

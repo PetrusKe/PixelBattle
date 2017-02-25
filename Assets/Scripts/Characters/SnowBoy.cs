@@ -9,7 +9,8 @@ namespace GameCharacters
         public override void LightAttack()
         {
             base.LightAttack();
-            // could add combo judge here
+
+            state.IsLightAttack = true;         // may bug
             ChangeAnim(anim.lightAttack);
             LightAttackAttrs skillAttrs = characterSkills.lightAttackAttrs;
 
@@ -36,6 +37,8 @@ namespace GameCharacters
             Transform rightWeaponCenter = transform.Find("Body/ArmR/HandR/_holder/Weapon/HitCenter");
             characterWeaponsCenter = new Transform[2] { leftWeaponCenter, rightWeaponCenter };
         }
+
+        public override void CheckCoolTime() { }
 
     }
 }

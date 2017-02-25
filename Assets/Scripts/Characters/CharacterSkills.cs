@@ -8,7 +8,11 @@ namespace GameCharacters
     {
         public string name { get; set; }
         public float power { get; set; }
-        public bool isAct { get; set; }
+        public float lifeTime { get; set; }
+        public float force { get; set; }
+        public float speed { get;  set; }
+        public float coolTime { get;  set; }
+        public float waitTime { get;  set; }
     }
 
     public class CharacterSkills
@@ -19,27 +23,23 @@ namespace GameCharacters
         {
             lightAttackAttrs.name = "LightAttack";
             lightAttackAttrs.power = 0f;
-            lightAttackAttrs.isAct = false;
+            lightAttackAttrs.lifeTime = 0f;
+            lightAttackAttrs.force = 0f;
+            lightAttackAttrs.speed = 0f;
+            lightAttackAttrs.coolTime = 0f;
+            lightAttackAttrs.waitTime = -1f;
         }
-            
-        public virtual void lightAttackHurt() { }
-
     }
 
     public class MagicGirlSkills : CharacterSkills
     {
         public MagicGirlSkills()
         {
-            lightAttackAttrs.name = "LightAttack";
             lightAttackAttrs.power = 5.0f;
-            lightAttackAttrs.isAct = false;
-
-        }
-
-        public override void lightAttackHurt()
-        {
-            base.lightAttackHurt();
-
+            lightAttackAttrs.lifeTime = 10.0f;
+            lightAttackAttrs.force = 0f;
+            lightAttackAttrs.speed = 15f;
+            lightAttackAttrs.coolTime = 0.7f;
         }
     }
 
@@ -47,10 +47,7 @@ namespace GameCharacters
     {
         public SnowBoySkills()
         {
-            lightAttackAttrs.name = "LightAttack";
             lightAttackAttrs.power = 2.0f;
-            lightAttackAttrs.isAct = false;
-            
         }
     }
 }
