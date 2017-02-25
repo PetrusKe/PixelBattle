@@ -12,15 +12,15 @@ namespace GameParicles
         public ParticleSystem projectileParticle;
         public AudioSource explosionAudio;
 
-        public float radius = 0.5f;       //equal as ball collider's radius
-
         public GameObject owner;
-        private Vector3 movement;
         public float power;
         public float lifeTime;
         public float force;
         public float speed;
+
+        private Vector3 movement;
         private bool hasCollided = false;
+        private float radius = 0.5f;       //equal as ball collider's radius
 
         void Start()
         {
