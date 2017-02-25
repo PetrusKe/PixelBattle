@@ -12,6 +12,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UI/MainMenu.unity
   - enabled: 1
-    path: Assets/Scenes/City/CityLight.unity
-  - enabled: 1
     path: Assets/Scenes/City/CityDark.unity
+  - enabled: 1
+    path: Assets/Scenes/City/CityLight.unity
