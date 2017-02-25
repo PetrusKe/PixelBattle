@@ -12,7 +12,7 @@ public class switchSceneCitynight : MonoBehaviour {
 
 	}
 
-	void switchsc()
+	void switchsc1()
 	{
 		UnityEngine.SceneManagement.SceneManager.LoadScene ("CityDark");
 	}
