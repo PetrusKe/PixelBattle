@@ -10,7 +10,9 @@ namespace GameCharacters
         public float power { get; set; }
         public float lifeTime { get; set; }
         public float force { get; set; }
-        public float speed { get; set; }
+        public float speed { get;  set; }
+        public float coolTime { get;  set; }
+        public float waitTime { get;  set; }
     }
 
     public class CharacterSkills
@@ -24,10 +26,9 @@ namespace GameCharacters
             lightAttackAttrs.lifeTime = 0f;
             lightAttackAttrs.force = 0f;
             lightAttackAttrs.speed = 0f;
+            lightAttackAttrs.coolTime = 0f;
+            lightAttackAttrs.waitTime = -1f;
         }
-            
-        public virtual void lightAttackHurt() { }
-
     }
 
     public class MagicGirlSkills : CharacterSkills
@@ -38,12 +39,7 @@ namespace GameCharacters
             lightAttackAttrs.lifeTime = 10.0f;
             lightAttackAttrs.force = 0f;
             lightAttackAttrs.speed = 15f;
-        }
-
-        public override void lightAttackHurt()
-        {
-            base.lightAttackHurt();
-
+            lightAttackAttrs.coolTime = 0.7f;
         }
     }
 

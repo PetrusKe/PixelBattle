@@ -55,13 +55,13 @@ namespace GameCharacters
     public class CharacterState
     {
         private bool isRun;
-        private int isLightAttack;
+        private bool isLightAttack;
         private bool isGround;
 
         public CharacterState()
         {
             isRun = false;
-            isLightAttack = 0;
+            isLightAttack = false;
             isGround = true;
         }
 
@@ -82,7 +82,7 @@ namespace GameCharacters
             }
         }
 
-        public int IsLightAttack
+        public bool IsLightAttack
         {
             get
             {
@@ -91,7 +91,7 @@ namespace GameCharacters
 
             set
             {
-                if (value < 0)
+                if (isLightAttack == value)
                     return;
                 isLightAttack = value;
             }

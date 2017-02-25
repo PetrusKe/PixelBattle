@@ -40,9 +40,9 @@ namespace GameCharacters
 
         public void AttackAction()
         {
+            character.CheckCoolTime();
             if(inputController.GetKeyDown("lightAttack_"+controllerId))
             {
-                Debug.Log("??");
                 character.LightAttack();
             }
         }

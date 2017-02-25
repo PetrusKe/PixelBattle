@@ -277,6 +277,7 @@ GameObject:
   - component: {fileID: 95589601023236320}
   - component: {fileID: 114602445567332922}
   - component: {fileID: 114690873745116628}
+  - component: {fileID: 114031688309493978}
   m_Layer: 8
   m_Name: SnowBoy
   m_TagString: Player
@@ -2300,8 +2301,8 @@ Rigidbody:
   m_GameObject: {fileID: 1256176548788684}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 1
-  m_AngularDrag: 1
+  m_Drag: 0.1
+  m_AngularDrag: 0.1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -2319,11 +2320,23 @@ Animator:
   m_Controller: {fileID: 9100000, guid: ee98e8dd38d5e1e41a048bc601491324, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114031688309493978
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1256176548788684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84a565f9d10e82049be1cd0c2e4c011a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightAttackObj: {fileID: 0}
 --- !u!114 &114117451020324484
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2336,7 +2349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.5882353}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.516}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

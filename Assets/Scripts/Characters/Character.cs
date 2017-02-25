@@ -55,6 +55,8 @@ namespace GameCharacters
 
         protected virtual void GetWeaponsCenter() { }
 
+        public virtual void CheckCoolTime() { } 
+
         public void Move(float h, float v)
         {
             if ((h != 0 || v != 0) && characterAttrs.walkSpeed > 0f)
@@ -78,20 +80,15 @@ namespace GameCharacters
 
         public virtual void LightAttack()
         {
-            if (!state.IsGround)
+            if (!state.IsGround || state.IsLightAttack)
                 return;
-            if (state.IsLightAttack < 0 || state.IsLightAttack >= 3)  // feture will support 3 combo
-                state.IsLightAttack = 0;
-
-            state.IsLightAttack++;
-
         }
 
         public void TakeDamage(float damage)
         {
             if (characterHP.Change(-damage) == 0)
             {
-                // player Dad.
+                // player daed
             }
             else
             {
@@ -128,6 +125,10 @@ namespace GameCharacters
             animator.SetTrigger(paramName);
         }
 
+        public void LightAttactEnd()
+        {
+            state.IsLightAttack = false;
+        }
     }
 
 }
