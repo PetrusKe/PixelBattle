@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Mainmenu/MainMenu.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/City/City.unity
+  - enabled: 1
+    path: Assets/Scenes/UI/MainMenu.unity
+  - enabled: 1
+    path: Assets/Scenes/City/CityLight.unity
+  - enabled: 1
+    path: Assets/Scenes/City/CityDark.unity

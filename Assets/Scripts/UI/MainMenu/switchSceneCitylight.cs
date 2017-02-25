@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class switchScene : MonoBehaviour {
+public class switchSceneCitylight : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () 
@@ -14,7 +14,7 @@ public class switchScene : MonoBehaviour {
 
 	void switchsc()
 	{
-		UnityEngine.SceneManagement.SceneManager.LoadScene ("City");
+		UnityEngine.SceneManagement.SceneManager.LoadScene ("CityLight");
 	}
 
 }
