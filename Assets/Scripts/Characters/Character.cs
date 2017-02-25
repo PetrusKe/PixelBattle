@@ -21,14 +21,16 @@ namespace GameCharacters
         protected CharacterSkills characterSkills;
         protected CharacterState state;
         protected CharacterAnimation anim;
+        protected CharacterExtendObj extendObj;
         protected Transform[] characterWeaponsCenter;
-
+        
         public string characterName;
 
         public void Start()
         {
             animator = GetComponent<Animator>();
             playerRigidbody = GetComponent<Rigidbody>();
+            extendObj = GetComponent<CharacterExtendObj>();
 
             // Init character components
             Assembly assembly = Assembly.GetExecutingAssembly();
@@ -82,7 +84,6 @@ namespace GameCharacters
                 state.IsLightAttack = 0;
 
             state.IsLightAttack++;
-            Console.Write(state.IsLightAttack);
 
         }
 
@@ -90,7 +91,7 @@ namespace GameCharacters
         {
             if (characterHP.Change(-damage) == 0)
             {
-                // player dead.
+                // player Dad.
             }
             else
             {

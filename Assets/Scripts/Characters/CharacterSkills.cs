@@ -8,7 +8,9 @@ namespace GameCharacters
     {
         public string name { get; set; }
         public float power { get; set; }
-        public bool isAct { get; set; }
+        public float lifeTime { get; set; }
+        public float force { get; set; }
+        public float speed { get; set; }
     }
 
     public class CharacterSkills
@@ -19,7 +21,9 @@ namespace GameCharacters
         {
             lightAttackAttrs.name = "LightAttack";
             lightAttackAttrs.power = 0f;
-            lightAttackAttrs.isAct = false;
+            lightAttackAttrs.lifeTime = 0f;
+            lightAttackAttrs.force = 0f;
+            lightAttackAttrs.speed = 0f;
         }
             
         public virtual void lightAttackHurt() { }
@@ -30,10 +34,10 @@ namespace GameCharacters
     {
         public MagicGirlSkills()
         {
-            lightAttackAttrs.name = "LightAttack";
             lightAttackAttrs.power = 5.0f;
-            lightAttackAttrs.isAct = false;
-
+            lightAttackAttrs.lifeTime = 10.0f;
+            lightAttackAttrs.force = 0f;
+            lightAttackAttrs.speed = 15f;
         }
 
         public override void lightAttackHurt()
@@ -47,10 +51,7 @@ namespace GameCharacters
     {
         public SnowBoySkills()
         {
-            lightAttackAttrs.name = "LightAttack";
             lightAttackAttrs.power = 2.0f;
-            lightAttackAttrs.isAct = false;
-            
         }
     }
 }

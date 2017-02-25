@@ -42,6 +42,7 @@ namespace GameCharacters
         {
             if(inputController.GetKeyDown("lightAttack_"+controllerId))
             {
+                Debug.Log("??");
                 character.LightAttack();
             }
         }

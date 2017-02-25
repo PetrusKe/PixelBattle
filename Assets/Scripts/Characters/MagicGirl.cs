@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameParicles;
 
 namespace GameCharacters
 {
@@ -9,26 +10,29 @@ namespace GameCharacters
         public override void LightAttack()
         {
             base.LightAttack();
+
             ChangeAnim(anim.lightAttack);
             LightAttackAttrs skillAttrs = characterSkills.lightAttackAttrs;
+            if (characterWeaponsCenter.Length == 0)
+                return;
+            GameObject magicBall = Instantiate(extendObj.lightAttackObj, characterWeaponsCenter[0].position, characterWeaponsCenter[0].rotation) as GameObject;
+            MagicBallParicles paricles = magicBall.transform.GetComponent<MagicBallParicles>();
 
-            //if (characterWeaponsCenter.Length == 0)
-            //    return;
-            //foreach (Transform hit in characterWeaponsCenter)
-            //{
-            //    Collider[] colliders = Physics.OverlapSphere(hit.position, 0.3f, 1 << LayerMask.NameToLayer("Character"));
-            //    foreach (Collider collider in colliders)
-            //    {
-            //        if (collider.gameObject.name == this.gameObject.name)
-            //            continue;
-            //        Character other = collider.gameObject.GetComponent<Character>();
-            //        other.TakeDamage(skillAttrs.power);
-            //    }
-            //}
+            paricles.owner = gameObject;
+            paricles.lifeTime = skillAttrs.lifeTime;
+            paricles.power = skillAttrs.power;
+            paricles.force = skillAttrs.force;
+            paricles.speed = skillAttrs.speed;
+
+            
         }
+
         protected override void GetWeaponsCenter()
         {
             base.GetWeaponsCenter();
+            Transform leftWeaponCenter = transform.Find("Body/ArmL/HandL/_holder/Weapon/HitCenter");
+            characterWeaponsCenter = new Transform[1] { leftWeaponCenter };
+
         }
 
     }
