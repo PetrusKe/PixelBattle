@@ -33,6 +33,9 @@ public class CountDown : MonoBehaviour {
 	void Update () {
 		if (countDownPause)
 			pauseTime += Time.deltaTime;
+		if (Input.GetKeyDown (KeyCode.P))
+			Debug.Log (countDownPause.ToString ());
+			
 
 		if (time_secs > 0) {
 			time_secs = countDownSecs - (int)Time.time + (int)pauseTime;

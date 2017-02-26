@@ -6566,6 +6566,11 @@ Prefab:
       propertyPath: Settings
       value: 
       objectReference: {fileID: 1871912468}
+    - target: {fileID: 114708135319430064, guid: 5dc8f37790ed31c40838806afb9c7a7d,
+        type: 2}
+      propertyPath: countDownSecs
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5dc8f37790ed31c40838806afb9c7a7d, type: 2}
   m_IsPrefabParent: 0
@@ -6766,6 +6771,10 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: back
+      objectReference: {fileID: 0}
+    - target: {fileID: 1454121618558090, guid: ede92de68457df54b8dab8827f14a6f4, type: 2}
+      propertyPath: m_Name
+      value: Button.mainmenu
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ede92de68457df54b8dab8827f14a6f4, type: 2}
