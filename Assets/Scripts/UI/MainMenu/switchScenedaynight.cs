@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class switchScene : MonoBehaviour {
+public class switchScenedaynight : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () 
@@ -12,9 +12,9 @@ public class switchScene : MonoBehaviour {
 		
 	}
 
-	void switchsc()
+	void switchsc1()
 	{
-		UnityEngine.SceneManagement.SceneManager.LoadScene ("City");
+		UnityEngine.SceneManagement.SceneManager.LoadScene ("CityDark");
 	}
 
 }
