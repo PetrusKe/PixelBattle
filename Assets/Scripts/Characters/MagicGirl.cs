@@ -10,13 +10,14 @@ namespace GameCharacters
         public override void LightAttack()
         {
             base.LightAttack();
+
             if (skills.lightAttackAttrs.waitTime >= 0)
                 return;
-
-            state.IsLightAttack = true;   // may bug
-            ChangeAnim(anim.lightAttack);
             if (weaponCenter.Length == 0)
                 return;
+
+            state.IsLightAttack = true;
+            ChangeAnim(anim.lightAttack);
 
             LightAttackAttrs skillAttrs = skills.lightAttackAttrs;
             GameObject magicBall = Instantiate(extendObj.lightAttackObj, weaponCenter[0].position, weaponCenter[0].rotation) as GameObject;
@@ -27,8 +28,24 @@ namespace GameCharacters
             paricles.power = skillAttrs.power;
             paricles.force = skillAttrs.force;
             paricles.speed = skillAttrs.speed;
-
+            paricles.radius = skillAttrs.radius;
             skills.lightAttackAttrs.waitTime = 0;
+        }
+
+        public override void HardAttack()
+        {
+            base.HardAttack();
+            if (skills.hardAttackAttrs.waitTime >= 0)
+                return;
+            if (weaponCenter.Length == 0)
+                return;
+
+            state.IsHardAttack = true;
+            ChangeAnim(anim.hardAttack);
+
+            HardAttackAttrs skillAttrs = skills.hardAttackAttrs;
+
+            skills.hardAttackAttrs.waitTime = 0;
         }
 
         protected override void GetWeaponsCenter()
@@ -48,6 +65,12 @@ namespace GameCharacters
                 skills.lightAttackAttrs.waitTime += Time.deltaTime;
             else if (skills.lightAttackAttrs.waitTime >= skills.lightAttackAttrs.coolTime)
                 skills.lightAttackAttrs.waitTime = -1;
+
+            if (skills.hardAttackAttrs.waitTime < skills.hardAttackAttrs.coolTime
+                && skills.hardAttackAttrs.waitTime >= 0)
+                skills.hardAttackAttrs.waitTime += Time.deltaTime;
+            else if (skills.hardAttackAttrs.waitTime >= skills.hardAttackAttrs.coolTime)
+                skills.hardAttackAttrs.waitTime = -1;
         }
 
     }
