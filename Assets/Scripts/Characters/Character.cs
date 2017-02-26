@@ -19,12 +19,14 @@ namespace GameCharacters
         protected CharacterAttrs attrs;
         protected CharacterHP characterHP;
         protected CharacterSkills skills;
-        protected CharacterState state;
+        public CharacterState state;
         protected CharacterAnimation anim;
         protected CharacterExtendObj extendObj;
         protected Transform[] weaponCenter;
 
         public string characterName;
+
+        private Transform groundCheck;
 
         public void Start()
         {
@@ -51,6 +53,8 @@ namespace GameCharacters
 
             // get weapon Collider
             GetWeaponsCenter();
+
+            groundCheck = transform.Find("GroundCheck");
         }
 
         protected virtual void GetWeaponsCenter() { }
@@ -66,15 +70,18 @@ namespace GameCharacters
 
         public void Move(float h, float v)
         {
-            if ((h != 0 || v != 0) && attrs.walkSpeed > 0f)
+            if (state.IsGround && !state.IsDash && !state.IsAttack)
             {
-                state.IsRun = true;
-                ChangeAnim(anim.run, true);
-                Vector3 movement = new Vector3(h, 0f, v);
-                movement = movement.normalized * attrs.walkSpeed * Time.deltaTime;
-                playerRigidbody.MovePosition(transform.position + movement);
-                Turn(h, v);
-                return;
+                if ((h != 0 || v != 0) && attrs.walkSpeed > 0f)
+                {
+                    state.IsRun = true;
+                    ChangeAnim(anim.run, true);
+                    Vector3 movement = new Vector3(h, 0f, v);
+                    movement = movement.normalized * attrs.walkSpeed * Time.deltaTime;
+                    playerRigidbody.MovePosition(transform.position + movement);
+                    Turn(h, v);
+                    return;
+                }
             }
 
             state.IsRun = false;
@@ -88,14 +95,41 @@ namespace GameCharacters
                 playerRigidbody.MoveRotation(Quaternion.LookRotation(-rotation));
         }
 
+        public void CheckGround()
+        {
+            state.IsGround = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+        }
+
+        public void Jump()
+        {
+            if (!state.IsGround || state.IsDash)
+                return;
+            state.IsRun = false;
+            //Vector3 height = transform.TransformDirection(Vector3.up).normalized * 500f;
+            //playerRigidbody.AddForce(height);
+            Hashtable args = new Hashtable();
+            Vector3 height = transform.TransformDirection(Vector3.up).normalized * 1.3f;
+            args.Add("speed", 5f);
+            args.Add("easeype", iTween.EaseType.easeOutQuad);
+            args.Add("position", transform.position + height);
+            iTween.MoveTo(gameObject, args);
+
+        }
+
         public virtual void LightAttack()
         {
             if (!state.IsGround || state.IsDash || state.IsLightAttack)
                 return;
-            CancelInvoke();
         }
 
-        public void Dash()
+        public virtual void HardAttack()
+        {
+            if (!state.IsGround || state.IsDash || state.IsHardAttack)
+                return;
+        }
+
+
+        public virtual void Dash()
         {
             if (!state.IsGround || !state.IsRun || state.IsAttack)
                 return;
@@ -109,16 +143,13 @@ namespace GameCharacters
             movement = movement * skills.dashAttrs.distance;
             Hashtable args = new Hashtable();
             args.Add("speed", skills.dashAttrs.speed);
-            args.Add("easeType", skills.dashAttrs.moveWay);
+            args.Add("easetype", skills.dashAttrs.moveWay);
             args.Add("onstart", "ChangeDashAnim");
             args.Add("onstartparams", true);
             args.Add("oncomplete", "ChangeDashAnim");
             args.Add("oncompleteparams", false);
-
-            //args.Add("onstarttarget", gameObject);
-            //args.Add("onupdatetarget", gameObject);
-            //args.Add("oncompletetarget", gameObject);
             args.Add("position", transform.position + movement);
+
             iTween.MoveTo(gameObject, args);
             skills.dashAttrs.waitTime = 0;
         }
@@ -145,39 +176,27 @@ namespace GameCharacters
             return characterHP.Change(amount);
         }
 
-        public void ChangeAnim(string paramName, bool value)
-        {
-            animator.SetBool(paramName, value);
-        }
+        public void ChangeAnim(string paramName, bool value) { animator.SetBool(paramName, value); }
 
-        public void ChangeAnim(string paramName, int value)
-        {
-            animator.SetInteger(paramName, value);
-        }
+        public void ChangeAnim(string paramName, int value) { animator.SetInteger(paramName, value); }
 
-        public void ChangeAnim(string paramName, float value)
-        {
-            animator.SetFloat(paramName, value);
-        }
-        public void ChangeAnim(string paramName)
-        {
-            animator.SetTrigger(paramName);
-        }
-        public void ChangeDashAnim(bool v)
-        {
-            animator.SetBool("dash", v);
-        }
+        public void ChangeAnim(string paramName, float value) { animator.SetFloat(paramName, value); }
+
+        public void ChangeAnim(string paramName) { animator.SetTrigger(paramName); }
+
+        // for special anim change happen in dish action
+        public void ChangeDashAnim(bool v) { animator.SetBool(anim.dash, v); }
+
         public void AnimEnd()
         {
             int nameHash = animator.GetCurrentAnimatorStateInfo(0).fullPathHash;
 
             if (nameHash == anim.lightAttackAnim)
                 state.IsLightAttack = false;
-            //else if (nameHash == anim.dashAnim)
-            //{
-            //    state.IsDash = false;
-            //}
-
+            else if (nameHash == anim.hardAttackAnim)
+                state.IsHardAttack = false;
+            else if (nameHash == anim.dashAnim)
+                state.IsDash = false;
         }
     }
 

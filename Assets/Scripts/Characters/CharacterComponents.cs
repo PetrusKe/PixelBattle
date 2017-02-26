@@ -15,8 +15,8 @@ namespace GameCharacters
         private Slider HPSlider;
         private Image fillImage;
 
-        private Color fullHPColor = new Color(0f, 1f, 0f, 0.8f);
-        private Color zeroHPColor = new Color(1f, 0f, 0f, 0.6f);
+        private Color fullHPColor = new Color(0f, 1f, 0f, 1f);
+        private Color zeroHPColor = new Color(1f, 0f, 0f, 1f);
 
         public CharacterHP(float maxHP, Slider HPSlider, Image fillImage)
         {
@@ -59,6 +59,7 @@ namespace GameCharacters
         private bool isAttack;
 
         private bool isLightAttack;
+        private bool isHardAttack;
         private bool isDash;
 
         public CharacterState()
@@ -68,6 +69,7 @@ namespace GameCharacters
             isAttack = false;
 
             isLightAttack = false;
+            isHardAttack = false;
             isDash = false;
 
         }
@@ -96,7 +98,7 @@ namespace GameCharacters
         {
             get
             {
-                return isLightAttack;           // need add each time add attack
+                return isLightAttack || isHardAttack;           // need add each time add attack
             }
         }
 
@@ -107,6 +109,16 @@ namespace GameCharacters
             {
                 if (isLightAttack != value)
                     isLightAttack = value;
+            }
+        }
+
+        public bool IsHardAttack
+        {
+            get { return isHardAttack; }
+            set
+            {
+                if (isHardAttack != value)
+                    isHardAttack = value;
             }
         }
 
@@ -127,9 +139,11 @@ namespace GameCharacters
         public int idleAnim { get; private set; }
         public int runAnim { get; private set; }
         public int lightAttackAnim { get; private set; }
+        public int hardAttackAnim { get; private set; }
         public int dashAnim { get; private set; }
 
         public string lightAttack { get; private set; }
+        public string hardAttack { get; private set; }
         public string run { get; private set; }
         public string dash { get; private set; }
 
@@ -138,9 +152,11 @@ namespace GameCharacters
             idleAnim = Animator.StringToHash("Base Layer.Idle");
             runAnim = Animator.StringToHash("Base Layer.Run");
             lightAttackAnim = Animator.StringToHash("Base Layer.LightAttack");
+            hardAttackAnim = Animator.StringToHash("Base Layer.HardAttack");
             dashAnim = Animator.StringToHash("Base Layer.Dash");
 
             lightAttack = "lightAttack";
+            hardAttack = "hardAttack";
             run = "run";
             dash = "dash";
         }
