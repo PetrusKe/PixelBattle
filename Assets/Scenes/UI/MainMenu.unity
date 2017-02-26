@@ -21532,7 +21532,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 783502221}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d171116e68fc4484c8f8f46bad8745fc, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a079f93ddc870e4eb63369c292e6f09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maps: {fileID: 2138424115}
@@ -21545,7 +21545,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 783502221}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 576a8e5807337094e8e9132a7d26ea87, type: 3}
+  m_Script: {fileID: 11500000, guid: 76ebf300891334c42b95c1314443116c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &787491653
@@ -61233,7 +61233,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2138424115}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 616b946b4d621f0499663e242f393ead, type: 2}
   m_CullingMode: 0
