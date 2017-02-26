@@ -336,12 +336,12 @@ GameObject:
   - component: {fileID: 114833348214528724}
   - component: {fileID: 114453529178798666}
   m_Layer: 5
-  m_Name: Button.back
+  m_Name: Button.mainmenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1455750661244132
 GameObject:
   m_ObjectHideFlags: 1
@@ -408,7 +408,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1596398893858082
 GameObject:
   m_ObjectHideFlags: 1
