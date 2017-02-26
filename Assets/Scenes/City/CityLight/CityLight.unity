@@ -499,6 +499,26 @@ Prefab:
       propertyPath: volume
       value: 
       objectReference: {fileID: 2074993038}
+    - target: {fileID: 114968762614347948, guid: ede92de68457df54b8dab8827f14a6f4,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2074993034}
+    - target: {fileID: 114968762614347948, guid: ede92de68457df54b8dab8827f14a6f4,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SendMessage
+      objectReference: {fileID: 0}
+    - target: {fileID: 114375565770352926, guid: ede92de68457df54b8dab8827f14a6f4,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2074993036}
+    - target: {fileID: 114375565770352926, guid: ede92de68457df54b8dab8827f14a6f4,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SendMessage
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ede92de68457df54b8dab8827f14a6f4, type: 2}
   m_IsPrefabParent: 0
@@ -659,6 +679,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5dc8f37790ed31c40838806afb9c7a7d, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &2074993034 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114126472858774150, guid: 5dc8f37790ed31c40838806afb9c7a7d,
+    type: 2}
+  m_PrefabInternal: {fileID: 2074993033}
+  m_Script: {fileID: 11500000, guid: fc75574e3a20a3240838656da6b8a516, type: 3}
 --- !u!114 &2074993035 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114145371482497798, guid: 5dc8f37790ed31c40838806afb9c7a7d,
