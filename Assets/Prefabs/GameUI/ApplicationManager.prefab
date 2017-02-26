@@ -107,9 +107,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06a30bcfe8c62b34e8e774fd2e2780d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countDownSecs: 10
+  countDownSecs: 180
   timeText: {fileID: 0}
   panelImage: {fileID: 0}
+  countDownPause: 0
+  pauseTime: 0
 --- !u!114 &114761626074936354
 MonoBehaviour:
   m_ObjectHideFlags: 1
