@@ -10,10 +10,12 @@ public class SettingsBackCtrl : MonoBehaviour {
 	void Start () {
 		
 	}
-	
+
 	// Update is called once per frame
 	void back() {
+		Time.timeScale = 1.0f;
 		mainMenu.SetActive (true);
 		Settings.SetActive (false);
+
 	}
 }

@@ -16,6 +16,9 @@ public class CountDown : MonoBehaviour {
 	private int time_secs;
 	public Image panelImage;
 
+	public bool countDownPause;
+	public float pauseTime = 0.0f;
+
 	void Awake()
 	{
 		panelImage.gameObject.GetComponent<Animator> ().enabled = false;
@@ -28,9 +31,11 @@ public class CountDown : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (countDownPause)
+			pauseTime += Time.deltaTime;
 
 		if (time_secs > 0) {
-			time_secs = countDownSecs - (int)Time.time;
+			time_secs = countDownSecs - (int)Time.time + (int)pauseTime;
 			minutesLeft = time_secs / 60;
 			secondsLeft = time_secs % 60;
 
@@ -49,7 +54,7 @@ public class CountDown : MonoBehaviour {
 		else
 			timeText.text = "Time: 00:00";
 
-		
+
 	}
 
 	void LateUpdate()
