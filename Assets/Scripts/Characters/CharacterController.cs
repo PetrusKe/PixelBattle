@@ -45,7 +45,11 @@ namespace GameCharacters
             {
                 character.LightAttack();
             }
-        }
 
+            if(inputController.GetKeyDown("dash_" + controllerId))
+            {
+                character.Dash();
+            }
+        }
     }
 }

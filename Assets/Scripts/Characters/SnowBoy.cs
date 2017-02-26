@@ -12,12 +12,12 @@ namespace GameCharacters
 
             state.IsLightAttack = true;         // may bug
             ChangeAnim(anim.lightAttack);
-            LightAttackAttrs skillAttrs = characterSkills.lightAttackAttrs;
+            LightAttackAttrs skillAttrs = skills.lightAttackAttrs;
 
-            if (characterWeaponsCenter.Length == 0)
+            if (weaponCenter.Length == 0)
                 return;
 
-            foreach (Transform hit in characterWeaponsCenter)
+            foreach (Transform hit in weaponCenter)
             {
                 Collider[] colliders = Physics.OverlapSphere(hit.position, 0.3f, 1 << LayerMask.NameToLayer("Character"));
                 foreach (Collider collider in colliders)
@@ -35,10 +35,13 @@ namespace GameCharacters
             base.GetWeaponsCenter();
             Transform leftWeaponCenter = transform.Find("Body/ArmL/HandL/_holder/Weapon/HitCenter");
             Transform rightWeaponCenter = transform.Find("Body/ArmR/HandR/_holder/Weapon/HitCenter");
-            characterWeaponsCenter = new Transform[2] { leftWeaponCenter, rightWeaponCenter };
+            weaponCenter = new Transform[2] { leftWeaponCenter, rightWeaponCenter };
         }
 
-        public override void CheckCoolTime() { }
+        public override void CheckCoolTime()
+        {
+            base.CheckCoolTime();
+        }
 
     }
 }
