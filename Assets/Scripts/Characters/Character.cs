@@ -16,14 +16,14 @@ namespace GameCharacters
         protected Rigidbody playerRigidbody;
 
         // Character components
-        protected CharacterAttrs characterAttrs;
+        protected CharacterAttrs attrs;
         protected CharacterHP characterHP;
-        protected CharacterSkills characterSkills;
+        protected CharacterSkills skills;
         protected CharacterState state;
         protected CharacterAnimation anim;
         protected CharacterExtendObj extendObj;
-        protected Transform[] characterWeaponsCenter;
-        
+        protected Transform[] weaponCenter;
+
         public string characterName;
 
         public void Start()
@@ -35,15 +35,15 @@ namespace GameCharacters
             // Init character components
             Assembly assembly = Assembly.GetExecutingAssembly();
             string className = "GameCharacters." + characterName + "Attrs";
-            characterAttrs = (CharacterAttrs)assembly.CreateInstance(className);
+            attrs = (CharacterAttrs)assembly.CreateInstance(className);
 
             className = "GameCharacters." + characterName + "Skills";
-            characterSkills = (CharacterSkills)assembly.CreateInstance(className);
+            skills = (CharacterSkills)assembly.CreateInstance(className);
 
             // set HP. need a check
             Slider HPSlider = transform.Find("Canvas/HealthSlider").GetComponent<Slider>();
             Image fillImage = transform.Find("Canvas/HealthSlider/Fill Area/Fill").GetComponent<Image>();
-            characterHP = new CharacterHP(characterAttrs.maxHP, HPSlider, fillImage);
+            characterHP = new CharacterHP(attrs.maxHP, HPSlider, fillImage);
             characterHP.OnEnable();
 
             state = new CharacterState();
@@ -55,19 +55,29 @@ namespace GameCharacters
 
         protected virtual void GetWeaponsCenter() { }
 
-        public virtual void CheckCoolTime() { } 
+        public virtual void CheckCoolTime()
+        {
+            if (skills.dashAttrs.waitTime < skills.dashAttrs.coolTime
+                && skills.dashAttrs.waitTime >= 0)
+                skills.dashAttrs.waitTime += Time.deltaTime;
+            else if (skills.dashAttrs.waitTime >= skills.dashAttrs.coolTime)
+                skills.dashAttrs.waitTime = -1;
+        }
 
         public void Move(float h, float v)
         {
-            if ((h != 0 || v != 0) && characterAttrs.walkSpeed > 0f)
+            if ((h != 0 || v != 0) && attrs.walkSpeed > 0f)
             {
+                state.IsRun = true;
                 ChangeAnim(anim.run, true);
                 Vector3 movement = new Vector3(h, 0f, v);
-                movement = movement.normalized * characterAttrs.walkSpeed * Time.deltaTime;
+                movement = movement.normalized * attrs.walkSpeed * Time.deltaTime;
                 playerRigidbody.MovePosition(transform.position + movement);
                 Turn(h, v);
                 return;
             }
+
+            state.IsRun = false;
             ChangeAnim(anim.run, false);
         }
 
@@ -80,8 +90,37 @@ namespace GameCharacters
 
         public virtual void LightAttack()
         {
-            if (!state.IsGround || state.IsLightAttack)
+            if (!state.IsGround || state.IsDash || state.IsLightAttack)
                 return;
+            CancelInvoke();
+        }
+
+        public void Dash()
+        {
+            if (!state.IsGround || !state.IsRun || state.IsAttack)
+                return;
+
+            if (skills.dashAttrs.waitTime >= 0)
+                return;
+
+            state.IsDash = true;
+            //dash here
+            Vector3 movement = -transform.TransformDirection(Vector3.forward).normalized;
+            movement = movement * skills.dashAttrs.distance;
+            Hashtable args = new Hashtable();
+            args.Add("speed", skills.dashAttrs.speed);
+            args.Add("easeType", skills.dashAttrs.moveWay);
+            args.Add("onstart", "ChangeDashAnim");
+            args.Add("onstartparams", true);
+            args.Add("oncomplete", "ChangeDashAnim");
+            args.Add("oncompleteparams", false);
+
+            //args.Add("onstarttarget", gameObject);
+            //args.Add("onupdatetarget", gameObject);
+            //args.Add("oncompletetarget", gameObject);
+            args.Add("position", transform.position + movement);
+            iTween.MoveTo(gameObject, args);
+            skills.dashAttrs.waitTime = 0;
         }
 
         public void TakeDamage(float damage)
@@ -124,10 +163,21 @@ namespace GameCharacters
         {
             animator.SetTrigger(paramName);
         }
-
-        public void LightAttactEnd()
+        public void ChangeDashAnim(bool v)
         {
-            state.IsLightAttack = false;
+            animator.SetBool("dash", v);
+        }
+        public void AnimEnd()
+        {
+            int nameHash = animator.GetCurrentAnimatorStateInfo(0).fullPathHash;
+
+            if (nameHash == anim.lightAttackAnim)
+                state.IsLightAttack = false;
+            //else if (nameHash == anim.dashAnim)
+            //{
+            //    state.IsDash = false;
+            //}
+
         }
     }
 

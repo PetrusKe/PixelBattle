@@ -54,61 +54,70 @@ namespace GameCharacters
 
     public class CharacterState
     {
-        private bool isRun;
-        private bool isLightAttack;
         private bool isGround;
+        private bool isRun;
+        private bool isAttack;
+
+        private bool isLightAttack;
+        private bool isDash;
 
         public CharacterState()
         {
-            isRun = false;
-            isLightAttack = false;
             isGround = true;
+            isRun = false;
+            isAttack = false;
+
+            isLightAttack = false;
+            isDash = false;
+
         }
 
-
+        public bool IsGround
+        {
+            get { return isGround; }
+            set
+            {
+                if (isGround != value)
+                    isGround = value;
+            }
+        }
 
         public bool IsRun
         {
-            get
-            {
-                return isRun;
-            }
-
+            get { return isRun; }
             set
             {
-                if (isRun == value)
-                    return;
-                isRun = value;
+                if (isRun != value)
+                    isRun = value;
+            }
+        }
+
+        public bool IsAttack
+        {
+            get
+            {
+                return isLightAttack;           // need add each time add attack
             }
         }
 
         public bool IsLightAttack
         {
-            get
-            {
-                return isLightAttack;
-            }
-
+            get { return isLightAttack; }
             set
             {
-                if (isLightAttack == value)
-                    return;
-                isLightAttack = value;
+                if (isLightAttack != value)
+                    isLightAttack = value;
             }
         }
 
-        public bool IsGround
+        public bool IsDash
         {
-            get
-            {
-                return isGround;
-            }
+            get { return isDash; }
 
             set
             {
-                if (isGround == value)
-                    return;
-                isGround = value;
+                if(isDash != value)
+                    isDash = value;
             }
         }
     }
@@ -118,18 +127,22 @@ namespace GameCharacters
         public int idleAnim { get; private set; }
         public int runAnim { get; private set; }
         public int lightAttackAnim { get; private set; }
+        public int dashAnim { get; private set; }
 
         public string lightAttack { get; private set; }
         public string run { get; private set; }
+        public string dash { get; private set; }
 
         public CharacterAnimation()
         {
             idleAnim = Animator.StringToHash("Base Layer.Idle");
             runAnim = Animator.StringToHash("Base Layer.Run");
             lightAttackAnim = Animator.StringToHash("Base Layer.LightAttack");
+            dashAnim = Animator.StringToHash("Base Layer.Dash");
 
             lightAttack = "lightAttack";
             run = "run";
+            dash = "dash";
         }
     }
 }

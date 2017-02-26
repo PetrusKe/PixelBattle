@@ -44,7 +44,6 @@ namespace GameParicles
                     continue;
 
                 hasCollided = true;
-                Debug.Log(collider.gameObject.name);
 
                 if (collider.gameObject.layer == LayerMask.NameToLayer("Character"))
                 {
