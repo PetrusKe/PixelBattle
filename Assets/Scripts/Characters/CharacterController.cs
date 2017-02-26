@@ -12,13 +12,13 @@ namespace GameCharacters
         public Character character { get; private set; }
         InputController inputController;
 
-        private int controllerId;
+        // FIXME(Petrus): cancel this param future, and fix Inp
+        public int controllerId;
 
         private void Start()
         {
             character = GetComponent<Character>();
-            inputController = new InputController();
-            controllerId = InputController.ControllerId;
+            inputController = InputController.getInstance();
         }
 
         // Update is called once per frame
@@ -31,9 +31,19 @@ namespace GameCharacters
 
         private void PositionAction()
         {
+            character.CheckGround();
+            if (inputController.GetKeyDown("jump_" + controllerId))
+            {
+                character.Jump();
+                return;
+            }
+            Debug.Log("Horizontal_" + controllerId);
+
             float h = inputController.GetAxis("Horizontal_" + controllerId);
             float v = inputController.GetAxis("Vertical_" + controllerId);
             character.Move(h, v);
+
+            
         }
 
 
@@ -41,15 +51,15 @@ namespace GameCharacters
         public void AttackAction()
         {
             character.CheckCoolTime();
-            if(inputController.GetKeyDown("lightAttack_"+controllerId))
-            {
-                character.LightAttack();
-            }
 
-            if(inputController.GetKeyDown("dash_" + controllerId))
-            {
+            if (inputController.GetKeyDown("dash_" + controllerId))
                 character.Dash();
-            }
+
+            if (inputController.GetKeyDown("lightAttack_"+controllerId))
+                character.LightAttack();
+
+            if (inputController.GetKeyDown("hardAttack_" + controllerId))
+                character.HardAttack();
         }
     }
 }

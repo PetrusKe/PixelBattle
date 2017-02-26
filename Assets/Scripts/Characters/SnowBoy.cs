@@ -9,17 +9,16 @@ namespace GameCharacters
         public override void LightAttack()
         {
             base.LightAttack();
+            if (weaponCenter.Length == 0)
+                return;
 
             state.IsLightAttack = true;         // may bug
             ChangeAnim(anim.lightAttack);
             LightAttackAttrs skillAttrs = skills.lightAttackAttrs;
 
-            if (weaponCenter.Length == 0)
-                return;
-
             foreach (Transform hit in weaponCenter)
             {
-                Collider[] colliders = Physics.OverlapSphere(hit.position, 0.3f, 1 << LayerMask.NameToLayer("Character"));
+                Collider[] colliders = Physics.OverlapSphere(hit.position, skillAttrs.radius, 1 << LayerMask.NameToLayer("Character"));
                 foreach (Collider collider in colliders)
                 {
                     if (collider.gameObject.name == this.gameObject.name)
@@ -28,6 +27,32 @@ namespace GameCharacters
                     other.TakeDamage(skillAttrs.power);
                 }           
             }
+        }
+
+        public override void HardAttack()
+        {
+            base.HardAttack();
+            if (skills.hardAttackAttrs.waitTime >= 0)
+                return;
+            if (weaponCenter.Length == 0)
+                return;
+
+            state.IsHardAttack = true;
+            ChangeAnim(anim.hardAttack);
+            HardAttackAttrs skillAttrs = skills.hardAttackAttrs;
+            
+            foreach(Transform hit in weaponCenter)
+            {
+                Collider[] colliders = Physics.OverlapSphere(hit.position, skillAttrs.radius, 1 << LayerMask.NameToLayer("Character"));
+                foreach (Collider collider in colliders)
+                {
+                    if (collider.gameObject.name == this.gameObject.name)
+                        continue;
+                    Character other = collider.gameObject.GetComponent<Character>();
+                    other.TakeDamage(skillAttrs.power);
+                }
+            }
+            skills.hardAttackAttrs.waitTime = 0;
         }
 
         protected override void GetWeaponsCenter()
@@ -41,6 +66,12 @@ namespace GameCharacters
         public override void CheckCoolTime()
         {
             base.CheckCoolTime();
+
+            if (skills.hardAttackAttrs.waitTime < skills.hardAttackAttrs.coolTime
+                && skills.hardAttackAttrs.waitTime >= 0)
+                skills.hardAttackAttrs.waitTime += Time.deltaTime;
+            else if (skills.hardAttackAttrs.waitTime >= skills.hardAttackAttrs.coolTime)
+                skills.hardAttackAttrs.waitTime = -1;
         }
 
     }

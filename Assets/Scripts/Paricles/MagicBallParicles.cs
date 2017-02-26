@@ -17,10 +17,10 @@ namespace GameParicles
         public float lifeTime;
         public float force;
         public float speed;
+        public float radius;
 
         private Vector3 movement;
         private bool hasCollided = false;
-        private float radius = 0.5f;       //equal as ball collider's radius
 
         void Start()
         {
