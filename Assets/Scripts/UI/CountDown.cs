@@ -18,7 +18,7 @@ public class CountDown : MonoBehaviour {
 
 	void Awake()
 	{
-		panelImage.enabled = false;
+		panelImage.gameObject.GetComponent<Animator> ().enabled = false;
 	}
 
 	// Use this for initialization
@@ -56,7 +56,7 @@ public class CountDown : MonoBehaviour {
 	{
 		if ((int)Time.time == countDownSecs)//如果系统时间与预设倒计时精确相等
 			
-			panelImage.enabled = true;
+			panelImage.gameObject.GetComponent<Animator> ().enabled = true;
 			
 	}
 }
