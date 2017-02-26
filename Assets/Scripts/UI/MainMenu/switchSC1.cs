@@ -14,7 +14,11 @@ public class switchSC1 : MonoBehaviour {
 
 	void switchsc()
 	{
+		if(Time.timeScale != 1.0f)
+			Time.timeScale = 1.0f;
+		
 		UnityEngine.SceneManagement.SceneManager.LoadScene ("MainMenu");
 	}
 
 }
+
