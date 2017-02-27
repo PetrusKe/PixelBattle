@@ -30,8 +30,8 @@ namespace GameConfig
         {
             // Just for test.
             dampTime = 0.2f;
-            screenEdgeBuffer = 3f;
-            minSize = 5f;
+            screenEdgeBuffer = 5f;
+            minSize = 7f;
         }
 
         public static CameraConfig getInstance()

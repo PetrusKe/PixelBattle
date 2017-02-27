@@ -54,7 +54,7 @@ namespace GameCharacters
 
     public class CharacterState
     {
-        private bool isGround;
+        private bool isJump;
         private bool isRun;
         private bool isAttack;
 
@@ -64,7 +64,7 @@ namespace GameCharacters
 
         public CharacterState()
         {
-            isGround = true;
+            isJump = false;
             isRun = false;
             isAttack = false;
 
@@ -74,13 +74,13 @@ namespace GameCharacters
 
         }
 
-        public bool IsGround
+        public bool IsJump
         {
-            get { return isGround; }
+            get { return isJump; }
             set
             {
-                if (isGround != value)
-                    isGround = value;
+                if (isJump != value)
+                    isJump = value;
             }
         }
 
@@ -138,27 +138,31 @@ namespace GameCharacters
     {
         public int idleAnim { get; private set; }
         public int runAnim { get; private set; }
+        public int jumpAnim { get; private set; }
+        public int dashAnim { get; private set; }
         public int lightAttackAnim { get; private set; }
         public int hardAttackAnim { get; private set; }
-        public int dashAnim { get; private set; }
 
+        public string run { get; private set; }
+        public string jump { get; private set; }
+        public string dash { get; private set; }
         public string lightAttack { get; private set; }
         public string hardAttack { get; private set; }
-        public string run { get; private set; }
-        public string dash { get; private set; }
 
         public CharacterAnimation()
         {
             idleAnim = Animator.StringToHash("Base Layer.Idle");
             runAnim = Animator.StringToHash("Base Layer.Run");
+            jumpAnim = Animator.StringToHash("Base Layer.Jump");
+            dashAnim = Animator.StringToHash("Base Layer.Dash");
             lightAttackAnim = Animator.StringToHash("Base Layer.LightAttack");
             hardAttackAnim = Animator.StringToHash("Base Layer.HardAttack");
-            dashAnim = Animator.StringToHash("Base Layer.Dash");
 
+            run = "run";
+            jump = "jump";
+            dash = "dash";
             lightAttack = "lightAttack";
             hardAttack = "hardAttack";
-            run = "run";
-            dash = "dash";
         }
     }
 }

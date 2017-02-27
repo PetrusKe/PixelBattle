@@ -33,17 +33,11 @@ namespace GameCharacters
         {
             character.CheckGround();
             if (inputController.GetKeyDown("jump_" + controllerId))
-            {
                 character.Jump();
-                return;
-            }
-            Debug.Log("Horizontal_" + controllerId);
 
             float h = inputController.GetAxis("Horizontal_" + controllerId);
             float v = inputController.GetAxis("Vertical_" + controllerId);
             character.Move(h, v);
-
-            
         }
 
 

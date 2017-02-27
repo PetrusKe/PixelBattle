@@ -23,17 +23,15 @@ namespace GameCharacters
         protected CharacterAnimation anim;
         protected CharacterExtendObj extendObj;
         protected Transform[] weaponCenter;
-
         public string characterName;
 
-        private Transform groundCheck;
+        private float distToGround;
 
         public void Start()
         {
             animator = GetComponent<Animator>();
             playerRigidbody = GetComponent<Rigidbody>();
             extendObj = GetComponent<CharacterExtendObj>();
-
             // Init character components
             Assembly assembly = Assembly.GetExecutingAssembly();
             string className = "GameCharacters." + characterName + "Attrs";
@@ -54,7 +52,7 @@ namespace GameCharacters
             // get weapon Collider
             GetWeaponsCenter();
 
-            groundCheck = transform.Find("GroundCheck");
+            distToGround = GetComponent<Collider>().bounds.extents.y;
         }
 
         protected virtual void GetWeaponsCenter() { }
@@ -70,14 +68,24 @@ namespace GameCharacters
 
         public void Move(float h, float v)
         {
-            if (state.IsGround && !state.IsDash && !state.IsAttack)
+            if (!state.IsDash)
             {
-                if ((h != 0 || v != 0) && attrs.walkSpeed > 0f)
+                if ((h != 0 || v != 0) && attrs.runSpeed > 0f)
                 {
-                    state.IsRun = true;
-                    ChangeAnim(anim.run, true);
                     Vector3 movement = new Vector3(h, 0f, v);
-                    movement = movement.normalized * attrs.walkSpeed * Time.deltaTime;
+                    movement = movement.normalized * attrs.runSpeed * Time.deltaTime;
+                    state.IsRun = true;
+                    if (state.IsJump)
+                    {
+                        state.IsRun = false;
+                        movement *= 0.7f;
+                    }
+                    else if(state.IsAttack)
+                    {
+                        movement *= 0.5f;
+                    }
+
+                    ChangeAnim(anim.run, state.IsRun);
                     playerRigidbody.MovePosition(transform.position + movement);
                     Turn(h, v);
                     return;
@@ -85,7 +93,7 @@ namespace GameCharacters
             }
 
             state.IsRun = false;
-            ChangeAnim(anim.run, false);
+            ChangeAnim(anim.run, state.IsRun);
         }
 
         public void Turn(float h, float v)
@@ -97,41 +105,45 @@ namespace GameCharacters
 
         public void CheckGround()
         {
-            state.IsGround = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+            state.IsJump = !Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.01f, 1 << LayerMask.NameToLayer("Ground"));
+            //ChangeAnim(anim.jump, state.IsJump);
+            //state.IsGround = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
         }
+
 
         public void Jump()
         {
-            if (!state.IsGround || state.IsDash)
+            if (state.IsJump || state.IsDash)
                 return;
             state.IsRun = false;
+            playerRigidbody.velocity = new Vector3(0f, attrs.jumpSpeed, 0f);
             //Vector3 height = transform.TransformDirection(Vector3.up).normalized * 500f;
             //playerRigidbody.AddForce(height);
-            Hashtable args = new Hashtable();
-            Vector3 height = transform.TransformDirection(Vector3.up).normalized * 1.3f;
-            args.Add("speed", 5f);
-            args.Add("easeype", iTween.EaseType.easeOutQuad);
-            args.Add("position", transform.position + height);
-            iTween.MoveTo(gameObject, args);
+            //Hashtable args = new Hashtable();
+            //Vector3 height = transform.TransformDirection(Vector3.up).normalized * 1.3f;
+            //args.Add("speed", 5f);
+            //args.Add("easeype", iTween.EaseType.easeOutQuad);
+            //args.Add("position", transform.position + height);
+            //iTween.MoveTo(gameObject, args);
 
         }
 
         public virtual void LightAttack()
         {
-            if (!state.IsGround || state.IsDash || state.IsLightAttack)
+            if (state.IsJump || state.IsDash || state.IsLightAttack)
                 return;
         }
 
         public virtual void HardAttack()
         {
-            if (!state.IsGround || state.IsDash || state.IsHardAttack)
+            if (state.IsJump || state.IsDash || state.IsHardAttack)
                 return;
         }
 
 
         public virtual void Dash()
         {
-            if (!state.IsGround || !state.IsRun || state.IsAttack)
+            if (state.IsJump || !state.IsRun || state.IsAttack)
                 return;
 
             if (skills.dashAttrs.waitTime >= 0)
@@ -152,6 +164,7 @@ namespace GameCharacters
 
             iTween.MoveTo(gameObject, args);
             skills.dashAttrs.waitTime = 0;
+            state.IsDash = false;
         }
 
         public void TakeDamage(float damage)
@@ -195,8 +208,6 @@ namespace GameCharacters
                 state.IsLightAttack = false;
             else if (nameHash == anim.hardAttackAnim)
                 state.IsHardAttack = false;
-            else if (nameHash == anim.dashAnim)
-                state.IsDash = false;
         }
     }
 

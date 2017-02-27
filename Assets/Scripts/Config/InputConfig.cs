@@ -59,8 +59,8 @@ namespace GameConfig
             moveLeft_1 = (KeyCode)97;
             lightAttack_1 = (KeyCode)106;
             hardAttack_1 = (KeyCode)107;
-            dash_1 = (KeyCode)304;
-            jump_1 = (KeyCode)117;
+            dash_1 = (KeyCode)108;
+            jump_1 = (KeyCode)105;
 
             moveForward_2 = (KeyCode)273;
             moveBackward_2 = (KeyCode)274;
@@ -68,8 +68,8 @@ namespace GameConfig
             moveLeft_2 = (KeyCode)276;
             lightAttack_2 = (KeyCode)257;
             hardAttack_2 = (KeyCode)258;
-            dash_2 = (KeyCode)271;
-            jump_2 = (KeyCode)259;
+            dash_2 = (KeyCode)259;
+            jump_2 = (KeyCode)261;
         }
     }
 }
