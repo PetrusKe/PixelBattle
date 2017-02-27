@@ -619,7 +619,7 @@ Prefab:
         type: 2}
       propertyPath: timeText
       value: 
-      objectReference: {fileID: 365005076}
+      objectReference: {fileID: 0}
     - target: {fileID: 114708135319430064, guid: 5dc8f37790ed31c40838806afb9c7a7d,
         type: 2}
       propertyPath: panelImage
@@ -635,6 +635,11 @@ Prefab:
       propertyPath: Settings
       value: 
       objectReference: {fileID: 1533567930}
+    - target: {fileID: 114708135319430064, guid: 5dc8f37790ed31c40838806afb9c7a7d,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5dc8f37790ed31c40838806afb9c7a7d, type: 2}
   m_IsPrefabParent: 0
