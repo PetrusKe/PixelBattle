@@ -284,6 +284,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1297371431586082, guid: ede92de68457df54b8dab8827f14a6f4,
     type: 2}
   m_PrefabInternal: {fileID: 1533567925}
+--- !u!114 &1376233108 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114082481458677082, guid: ede92de68457df54b8dab8827f14a6f4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1533567925}
+  m_Script: {fileID: 11500000, guid: 0ab88920c7ec7cf4597831cfcdd5418c, type: 3}
 --- !u!114 &1376233109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,6 +407,11 @@ Prefab:
       propertyPath: hero2_right
       value: 
       objectReference: {fileID: 343843665}
+    - target: {fileID: 114542254938578212, guid: 88834cbfed1981241b9fa14ae6c41765,
+        type: 2}
+      propertyPath: timer
+      value: 
+      objectReference: {fileID: 1376233108}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 88834cbfed1981241b9fa14ae6c41765, type: 2}
   m_IsPrefabParent: 0
