@@ -109,6 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a88b5f4c74d0c4397bef12598479b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraController: {fileID: 0}
   player_1: {fileID: 4617161884865352}
   player_2: {fileID: 4337475810565576}
   heroes:
@@ -119,3 +120,4 @@ MonoBehaviour:
   hero1_right: {fileID: 0}
   hero2_left: {fileID: 0}
   hero2_right: {fileID: 0}
+  timer: {fileID: 0}
