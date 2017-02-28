@@ -19,6 +19,17 @@ public class spawnCtrl : MonoBehaviour {
 	private int heroID_1 = 0;
 	private int heroID_2 = 0;
 
+	private GLOBAL_SCREEN globalScreen; 
+
+	public TimeText timer;
+
+	void Awake()
+	{
+		globalScreen = GameObject.Find ("ApplicationManager").GetComponent<GLOBAL_SCREEN> ();
+		Debug.Log(globalScreen.newRes.ToString ());
+		Screen.SetResolution (globalScreen.newRes.width, globalScreen.newRes.height, globalScreen.full_screen);
+	}
+
 	void Start()
 	{
 		left_1 ();
@@ -43,32 +54,29 @@ public class spawnCtrl : MonoBehaviour {
 	{
 		heroID_1 = (heroID_1 == 0) ? 1 : heroID_1 - 1;
 		judge ();
-		Debug.Log ("left1");
 	}
 
 	void right_1()
 	{
 		heroID_1 = (heroID_1 == 1) ? 0 : heroID_1 + 1;
 		judge ();
-		Debug.Log ("right1");
 	}
 
 	void left_2()
 	{
 		heroID_2 = (heroID_2 == 0) ? 1 : heroID_2 - 1;
 		judge ();
-		Debug.Log ("left2");
 	}
 
 	void right_2()
 	{
 		heroID_2 = (heroID_2 == 1) ? 0 : heroID_2 + 1;
 		judge ();
-		Debug.Log ("right2");
 	}
 
 	void Enter()
 	{
+		timer.SendMessage ("begin");
 		switcherPanel.gameObject.SetActive (false);
 		StartGame ();
 	}

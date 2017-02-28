@@ -751,6 +751,10 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1095898110010784, guid: 5dc8f37790ed31c40838806afb9c7a7d, type: 2}
+      propertyPath: m_Name
+      value: ApplicationManager01
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5dc8f37790ed31c40838806afb9c7a7d, type: 2}
   m_IsPrefabParent: 0

@@ -6488,6 +6488,10 @@ Prefab:
       propertyPath: panelImage
       value: 
       objectReference: {fileID: 905208871}
+    - target: {fileID: 1095898110010784, guid: 5dc8f37790ed31c40838806afb9c7a7d, type: 2}
+      propertyPath: m_Name
+      value: ApplicationManager01
+      objectReference: {fileID: 0}
     - target: {fileID: 114126472858774150, guid: 5dc8f37790ed31c40838806afb9c7a7d,
         type: 2}
       propertyPath: Music
@@ -6636,6 +6640,11 @@ Prefab:
       propertyPath: hero2_right
       value: 
       objectReference: {fileID: 1488258224}
+    - target: {fileID: 114542254938578212, guid: 88834cbfed1981241b9fa14ae6c41765,
+        type: 2}
+      propertyPath: timer
+      value: 
+      objectReference: {fileID: 1413533003}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 88834cbfed1981241b9fa14ae6c41765, type: 2}
   m_IsPrefabParent: 0
@@ -6817,9 +6826,25 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114082481458677082, guid: ede92de68457df54b8dab8827f14a6f4,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114082481458677082, guid: ede92de68457df54b8dab8827f14a6f4,
+        type: 2}
+      propertyPath: spawnTimeController
+      value: 
+      objectReference: {fileID: 660419776}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ede92de68457df54b8dab8827f14a6f4, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1413533003 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114082481458677082, guid: ede92de68457df54b8dab8827f14a6f4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1413533002}
+  m_Script: {fileID: 11500000, guid: 0ab88920c7ec7cf4597831cfcdd5418c, type: 3}
 --- !u!114 &1413533004 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114328737475454888, guid: ede92de68457df54b8dab8827f14a6f4,

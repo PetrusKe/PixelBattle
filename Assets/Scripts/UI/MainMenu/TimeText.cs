@@ -9,13 +9,15 @@ public class TimeText : MonoBehaviour {
 	private int secs_60n;
 	private int minutes;
 	private int seconds;
-
 	private string minutesFormed;
 	private string secondsFormed;
+	private float enterTime = 0.0f;
+
 
 	// Use this for initialization
 	void Start () {
 		timeText = this.gameObject.GetComponent<Text> ();
+		timeText.enabled = false;
 		
 	}
 	
@@ -23,7 +25,7 @@ public class TimeText : MonoBehaviour {
 	void Update () {
 
 
-		secs_60n = (int)Time.fixedTime;
+		secs_60n = (int)(Time.fixedTime - enterTime);
 		seconds = secs_60n % 60;
 		minutes = ((int)Time.fixedTime / 60);
 
@@ -32,5 +34,11 @@ public class TimeText : MonoBehaviour {
 		secondsFormed = seconds < 10 ? "0" + seconds.ToString () : seconds.ToString();
 
 		timeText.text = "Time:" + minutesFormed + ":" + secondsFormed;
+	}
+
+	void begin()
+	{
+		enterTime = Time.time;//records the time you press "Enter"
+		timeText.enabled = true;
 	}
 }
