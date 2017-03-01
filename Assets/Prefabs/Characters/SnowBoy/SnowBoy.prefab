@@ -2552,7 +2552,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84a565f9d10e82049be1cd0c2e4c011a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightAttackObj: {fileID: 0}
+  lightAttackParticle: {fileID: 0}
+  hardAttackParticle: {fileID: 1814710484414670, guid: cf0d10be2c28a4245a36c5ee16dd8530,
+    type: 2}
+  dashParticle: {fileID: 0}
 --- !u!136 &136449909013193354
 CapsuleCollider:
   m_ObjectHideFlags: 1
