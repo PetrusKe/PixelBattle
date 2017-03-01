@@ -7,12 +7,14 @@ namespace GameCharacters
 
     public class CharacterAttrs
     {
-        public float walkSpeed;
+        public float runSpeed;
+        public float jumpSpeed;
         public float maxHP;
-        
+
         public CharacterAttrs()
         {
-            walkSpeed = 0.0f;
+            runSpeed = 0.0f;
+            jumpSpeed = 0.0f;
             maxHP = 0.0f;
         }
     }
@@ -21,8 +23,10 @@ namespace GameCharacters
     {
         public MagicGirlAttrs()
         {
-            walkSpeed = 6.0f;
+            runSpeed = 6.0f;
+            jumpSpeed = 5.0f;
             maxHP = 100.0f;
+            
         }
     }
 
@@ -30,7 +34,8 @@ namespace GameCharacters
     {
         public SnowBoyAttrs()
         {
-            walkSpeed = 5.0f;
+            runSpeed = 5.0f;
+            jumpSpeed = 5.0f;
             maxHP = 120.0f;
         }
     }

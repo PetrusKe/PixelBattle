@@ -25,16 +25,12 @@ namespace GameUtils
         {
             cameraConf = CameraConfig.getInstance();
             useCamera = GetComponentInChildren<Camera>();
-
-            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-            targetsPos = new Transform[players.Length];
-            for (int i = 0; i < players.Length; i++)
-                targetsPos[i] = players[i].transform;
         }
 
         // Update is called once per frame
         void FixedUpdate()
         {
+            // TODO(Petrus): Need fix it later
             CheckCamera();
             AdjustCamera();
         }
@@ -47,22 +43,26 @@ namespace GameUtils
 
         private void AdjustCamera()
         {
-            // move camera
-            Vector3 cameraWatchPos = FindAveragePos();
-            transform.position = 
-                Vector3.SmoothDamp(transform.position, cameraWatchPos, ref moveVelocity, cameraConf.dampTime);
+            if (targetsPos != null)
+            {
+                // move camera
+                Vector3 cameraWatchPos = FindAveragePos();
+                transform.position =
+                    Vector3.SmoothDamp(transform.position, cameraWatchPos, ref moveVelocity, cameraConf.dampTime);
 
-            // resize camera
-            float requiredSize = FindRequirdSize(cameraWatchPos);
-            useCamera.orthographicSize = 
-                Mathf.SmoothDamp(useCamera.orthographicSize, requiredSize, ref zoomVeloctiy, cameraConf.dampTime);
+                // resize camera
+                float requiredSize = FindRequirdSize(cameraWatchPos);
+                useCamera.orthographicSize =
+                    Mathf.SmoothDamp(useCamera.orthographicSize, requiredSize, ref zoomVeloctiy, cameraConf.dampTime);
+            }
+
         }
 
         private Vector3 FindAveragePos()
         {
             Vector3 avgPos = new Vector3();
 
-            for (int i=0; i < targetsPos.Length; i++)
+            for (int i = 0; i < targetsPos.Length; i++)
             {
                 if (!targetsPos[i].gameObject.activeSelf)
                     // if target not active, not handle it
@@ -70,7 +70,7 @@ namespace GameUtils
                 avgPos += targetsPos[i].position;
             }
 
-            if(targetsPos.Length > 0)
+            if (targetsPos.Length > 0)
                 avgPos /= targetsPos.Length;
 
             avgPos.y = transform.position.y;
@@ -82,7 +82,7 @@ namespace GameUtils
             // change global pos to local pos
             Vector3 cameraLocalPos = transform.InverseTransformPoint(cameraWatchPos);
             float size = 0f;
-            for(int i=0; i< targetsPos.Length; i++)
+            for (int i = 0; i < targetsPos.Length; i++)
             {
                 if (!targetsPos[i].gameObject.activeSelf)
                     continue;
@@ -106,6 +106,16 @@ namespace GameUtils
             // reset camera immediately
             transform.position = FindAveragePos();
             useCamera.orthographicSize = FindRequirdSize(transform.position);
+        }
+
+        public void CapturePlayers()
+        {
+            Debug.Log("------------");
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            Debug.Log(players.Length);
+            targetsPos = new Transform[players.Length];
+            for (int i = 0; i < players.Length; i++)
+                targetsPos[i] = players[i].transform;
         }
     }
 }
