@@ -30,7 +30,7 @@ public class spawnCtrl : MonoBehaviour
 
     void Awake()
     {
-        globalScreen = GameObject.Find("ApplicationManager").GetComponent<GLOBAL_SCREEN>();
+        globalScreen = GameObject.Find("UIController").GetComponent<GLOBAL_SCREEN>();
         Screen.SetResolution(globalScreen.newRes.width, globalScreen.newRes.height, globalScreen.full_screen);
     }
 
@@ -54,7 +54,7 @@ public class spawnCtrl : MonoBehaviour
             p2.transform.position = player_2.position;
             p2.transform.rotation = player_2.rotation;
             GameCharacters.CharacterController controller_2 = p2.GetComponent<GameCharacters.CharacterController>();
-            controller_1.controllerId = 2;
+            controller_2.controllerId = 2;
 
             cameraController = GameObject.Find("CameraRig").GetComponent<CameraController>();
             cameraController.CapturePlayers();
@@ -69,6 +69,7 @@ public class spawnCtrl : MonoBehaviour
 
     void left_1()
     {
+        Debug.Log("dsadsa11d");
         heroID_1 = (heroID_1 == 0) ? 1 : heroID_1 - 1;
         judge();
     }
@@ -81,6 +82,8 @@ public class spawnCtrl : MonoBehaviour
 
     void left_2()
     {
+        Debug.Log("dsadsa11d22");
+
         heroID_2 = (heroID_2 == 0) ? 1 : heroID_2 - 1;
         judge();
     }

@@ -6,11 +6,12 @@ namespace GameCharacters
 {
     public class SnowBoy : Character
     {
-        public override void LightAttack()
+        public override bool LightAttack()
         {
-            base.LightAttack();
+            if (!base.LightAttack())
+                return false;
             if (weaponCenter.Length == 0)
-                return;
+                return false;
 
             state.IsLightAttack = true;         // may bug
             ChangeAnim(anim.lightAttack);
@@ -27,18 +28,28 @@ namespace GameCharacters
                     other.TakeDamage(skillAttrs.power);
                 }           
             }
+            return true;
         }
 
-        public override void HardAttack()
+        public override bool HardAttack()
         {
-            base.HardAttack();
+            if (!base.HardAttack())
+                return false;
             if (skills.hardAttackAttrs.waitTime >= 0)
-                return;
+                return false;
             if (weaponCenter.Length == 0)
-                return;
+                return false;
 
             state.IsHardAttack = true;
             ChangeAnim(anim.hardAttack);
+
+            if(extendObj.hardAttackParticle!=null)
+            {
+                // Bug here
+                GameObject particle = Instantiate(extendObj.hardAttackParticle, weaponCenter[0].position, transform.rotation, transform) as GameObject;
+                Destroy(particle, 1f);
+            }
+
             HardAttackAttrs skillAttrs = skills.hardAttackAttrs;
             
             foreach(Transform hit in weaponCenter)
@@ -53,6 +64,30 @@ namespace GameCharacters
                 }
             }
             skills.hardAttackAttrs.waitTime = 0;
+            return true;
+        }
+
+        public override bool Dash()
+        {
+            if (!base.Dash())
+                return false;
+
+            state.IsDash = true;
+            Vector3 movement = -transform.TransformDirection(Vector3.forward).normalized;
+            movement = movement * skills.dashAttrs.distance;
+
+            Hashtable args = new Hashtable();
+            args.Add("speed", skills.dashAttrs.speed);
+            args.Add("easetype", skills.dashAttrs.moveWay);
+            args.Add("onstart", "ChangeDashAnim");
+            args.Add("onstartparams", true);
+            args.Add("oncomplete", "ChangeDashAnim");
+            args.Add("oncompleteparams", false);
+            args.Add("position", transform.position + movement);
+            iTween.MoveTo(gameObject, args);
+            skills.dashAttrs.waitTime = 0;
+            state.IsDash = false;
+            return true;
         }
 
         protected override void GetWeaponsCenter()

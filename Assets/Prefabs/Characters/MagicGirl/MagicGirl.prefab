@@ -2209,7 +2209,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84a565f9d10e82049be1cd0c2e4c011a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightAttackObj: {fileID: 1416116776236820, guid: 6e21c7e123cd35e4a8cebc08abe4deed,
+  lightAttackParticle: {fileID: 1416116776236820, guid: 6e21c7e123cd35e4a8cebc08abe4deed,
+    type: 2}
+  dashParticle: {fileID: 1380732323542860, guid: fe4d29b7045a1ed4f8bda3429030d14f,
     type: 2}
 --- !u!114 &114041633716522692
 MonoBehaviour:

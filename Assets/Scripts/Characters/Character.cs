@@ -128,43 +128,27 @@ namespace GameCharacters
 
         }
 
-        public virtual void LightAttack()
+        public virtual bool LightAttack()
         {
             if (state.IsJump || state.IsDash || state.IsLightAttack)
-                return;
+                return false;
+            return true;
         }
 
-        public virtual void HardAttack()
+        public virtual bool HardAttack()
         {
             if (state.IsJump || state.IsDash || state.IsHardAttack)
-                return;
+                return false;
+            return true;
         }
 
-
-        public virtual void Dash()
+        public virtual bool Dash()
         {
             if (state.IsJump || !state.IsRun || state.IsAttack)
-                return;
-
+                return false;
             if (skills.dashAttrs.waitTime >= 0)
-                return;
-
-            state.IsDash = true;
-            //dash here
-            Vector3 movement = -transform.TransformDirection(Vector3.forward).normalized;
-            movement = movement * skills.dashAttrs.distance;
-            Hashtable args = new Hashtable();
-            args.Add("speed", skills.dashAttrs.speed);
-            args.Add("easetype", skills.dashAttrs.moveWay);
-            args.Add("onstart", "ChangeDashAnim");
-            args.Add("onstartparams", true);
-            args.Add("oncomplete", "ChangeDashAnim");
-            args.Add("oncompleteparams", false);
-            args.Add("position", transform.position + movement);
-
-            iTween.MoveTo(gameObject, args);
-            skills.dashAttrs.waitTime = 0;
-            state.IsDash = false;
+                return false;
+            return true;
         }
 
         public void TakeDamage(float damage)
@@ -209,6 +193,7 @@ namespace GameCharacters
             else if (nameHash == anim.hardAttackAnim)
                 state.IsHardAttack = false;
         }
+
     }
 
 }

@@ -6,7 +6,9 @@ namespace GameCharacters
 {
     public class CharacterExtendObj : MonoBehaviour
     {
-        public GameObject lightAttackObj;
+        public GameObject lightAttackParticle;
+        public GameObject hardAttackParticle;
+        public GameObject dashParticle;
     }
 }
 
