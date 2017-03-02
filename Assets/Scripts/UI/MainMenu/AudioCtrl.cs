@@ -12,6 +12,6 @@ public class AudioCtrl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		this.gameObject.GetComponent<AudioSource> ().volume = GameObject.Find ("ApplicationManager").GetComponent<volume>().vol;
+		this.gameObject.GetComponent<AudioSource> ().volume = GameObject.Find ("UIcontroller").GetComponent<volume>().vol;
 	}
 }
